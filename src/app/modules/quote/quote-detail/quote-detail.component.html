@@ -1,0 +1,59 @@
+<div nz-row>
+    <div nz-col nzSpan="8">
+        <nz-space>
+            <button [routerLink]="'/counselor/manage-quote/edit/' + quote?._id" *nzSpaceItem nz-button nzType="primary" class="btn-dark-blue">
+                <span nz-icon nzType="edit"></span>
+                Tạo báo giá
+              </button>
+            <button
+              *nzSpaceItem
+              nz-button
+              nz-popconfirm
+              nzOkText="Yes"
+              nzCancelText="No"
+              nzDanger
+              nzPopconfirmTitle="Are you sure delete this quote?"
+            >
+              Delete
+            </button>
+          </nz-space>
+    </div>
+    <div nz-col nzSpan="10" nzOffset="6">
+        <nz-steps [nzCurrent]="quote?.status">
+            <nz-step nzTitle="Pending"></nz-step>
+            <nz-step nzTitle="In Progress"></nz-step>
+            <nz-step nzTitle="Waiting"></nz-step>
+          </nz-steps>
+    </div>
+  </div>
+
+<nz-card nzType="inner" style="margin-top:16px;" nzTitle="Thông tin báo giá">
+    <nz-descriptions nzTitle="Khách hàng">
+        <nz-descriptions-item nzTitle="Họ tên">{{quote?.khach_hang.ho_ten}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Email">{{quote?.khach_hang.email}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Số điện thoại">{{quote?.khach_hang.sdt}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Tỉnh/Thành">{{quote?.tinh_thanh}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Vấn đề">
+            {{quote?.van_de}}
+        </nz-descriptions-item>
+    </nz-descriptions>
+    <nz-divider></nz-divider>
+    <nz-descriptions nzTitle="Nhân viên">
+        <nz-descriptions-item nzTitle="Họ tên">{{quote?.nguoi_lap_phieu.ho_ten}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Email">{{quote?.nguoi_lap_phieu.email}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Số điện thoại">{{quote?.nguoi_lap_phieu.account.sdt}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Chức vụ">{{quote?.nguoi_lap_phieu.chuc_vu.ten_chuc_vu}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Bộ phận">{{quote?.nguoi_lap_phieu.bo_phan.ten_bo_phan}}</nz-descriptions-item>
+    </nz-descriptions>
+    <nz-divider></nz-divider>
+    <nz-descriptions nzTitle="Thông tin chi tiết">
+        <nz-descriptions-item nzTitle="Lĩnh vực">{{quote?.linh_vuc.ten_linh_vuc}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Dịch vụ">{{quote?.dich_vu.ten_dv}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Điều khoản thanh toán">{{quote?.dieu_khoan_thanh_toan}}
+            ngày</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Tổng giá dự kiến">{{quote?.tong_gia_du_kien}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Ghi chú (nếu có)">{{quote?.ghi_chu}}</nz-descriptions-item>
+    </nz-descriptions>
+    <nz-divider></nz-divider>
+    <span nz-typography nzType="secondary">{{quote?.ngay_gui_phieu}}</span>
+</nz-card>

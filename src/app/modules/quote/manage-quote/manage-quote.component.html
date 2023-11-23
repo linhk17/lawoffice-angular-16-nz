@@ -1,1 +1,43 @@
-<p>manage-quote works!</p>
+<nz-breadcrumb>
+    <nz-breadcrumb-item>Dashboard</nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+        <a>Manage Quote</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>Quote List</nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<nz-table #basicTable [nzData]="dataSource">
+    <thead>
+        <tr class="title-table">
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Created At</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of basicTable.data" [routerLink]='data.id'>
+            <td>{{ data.name }}</td>
+            <td>{{ data.email }}</td>
+            <td>{{ data.phone }}</td>
+            <td>{{ data.created }}</td>
+            <td>
+                <nz-tag [nzColor]="
+            data.status == 0 ? 'warning'
+            : data.status == 1 ? 'processing'
+            : 'success'">
+                    {{
+                    data.status == 0 ? 'Pending'
+                    : data.status == 1 ? 'Processing'
+                    : 'Success'
+                    }}
+                </nz-tag>
+            </td>
+            <td>
+                <span class="icon-action" nz-icon nzType="delete" nzTheme="fill"></span>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>

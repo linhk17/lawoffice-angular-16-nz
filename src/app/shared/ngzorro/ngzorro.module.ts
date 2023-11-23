@@ -8,6 +8,17 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { NzStepsModule } from 'ng-zorro-antd/steps';
 
 
 
@@ -24,7 +35,18 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     NzButtonModule,
     NzCardModule,
     NzFormModule,
-    NzSelectModule
+    NzSelectModule,
+    NzDropDownModule,
+    NzAvatarModule,
+    NzSpaceModule,
+    NzTypographyModule,
+    NzBreadCrumbModule,
+    NzTableModule,
+    NzTagModule,
+    NzDescriptionsModule,
+    NzDividerModule,
+    NzPopconfirmModule,
+    NzStepsModule
   ]
 })
 export class NgZorroModule { }

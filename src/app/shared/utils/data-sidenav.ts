@@ -1,22 +1,50 @@
 export const menuSideNav = [
-    {
-        icon: 'dashboard',
-        title: 'Dashboard',
-        link: 'dashboard'
-    },
-    {
+  {
+    icon: 'dashboard',
+    title: 'Dashboard',
+    link: 'dashboard',
+  },
+  {
+    icon: 'pie-chart',
+    title: 'Manage Quote',
+    link: 'manage-quote',
+  },
+  {
+    icon: 'calendar',
+    title: 'Time Appointment',
+    children: [
+      {
         icon: 'pie-chart',
-        title: 'Manage Quote',
+        title: 'All Time Appointment',
         link: 'manage-quote'
-    },
-    {
-        icon: 'fact_check',
-        title: 'Quản lý lịch hẹn',
-        link: 'calendar'
-    },
-    {
-        icon: 'fact_check',
-        title: 'Quản lý thông tin',
-        link: 'manage-calendar'
-    }
-]
+      },
+      {
+        icon: 'dashboard',
+        title: 'All Event',
+      },
+      {
+        icon: 'dashboard',
+        title: 'Cancel Event',
+      },
+    ],
+  },
+  {
+    icon: 'pie-chart',
+    title: 'Manage Info',
+    link: 'manage-quote',
+    children: [
+        {
+          icon: 'profile',
+          title: 'Manage Profile',
+        },
+        {
+          icon: 'setting',
+          title: 'Setting',
+        },
+        {
+          icon: 'dashboard',
+          title: 'Help & Contact',
+        },
+      ],
+  },
+];

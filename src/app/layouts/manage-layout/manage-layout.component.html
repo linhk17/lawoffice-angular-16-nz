@@ -1,39 +1,76 @@
 <nz-layout class="app-layout">
-  <nz-sider class="menu-sidebar"
-            nzCollapsible
-            nzWidth="256px"
-            nzBreakpoint="md"
-            [(nzCollapsed)]="isCollapsed"
-            [nzTrigger]="null">
+  <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
     <div class="sidebar-logo">
-      <a href="https://ng.ant.design/" target="_blank">
+      <a href="/" target="_blank">
         <img src="../../../assets/images/logo/logo_no.png" alt="logo">
         <h1>LawOffice Company Inc.</h1>
       </a>
     </div>
-    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-        <li nz-menu-item *ngFor="let item of listSideNav" [routerLink]="item.link">
+    <ul style="width: 100%;" nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <ng-container *ngFor="let item of listSideNav">
+        <li nz-menu-item [routerLink]="item.link" *ngIf="!item.children; else expand">
           <span nz-icon [nzType]="item.icon"></span>
           <span>{{item.title}}</span>
         </li>
-        <!-- <li nz-submenu nzTitle="User" nzIcon="user">
-          <ul>
-            <li nz-menu-item>Tom</li>
-            <li nz-menu-item>Bill</li>
-            <li nz-menu-item>Alex</li>
-          </ul>
-        </li> -->
-      </ul>
+        <ng-template #expand>
+          <li nz-submenu nzOpen="true" [nzTitle]="item.title" [nzIcon]="item.icon">
+            <ul>
+              <li *ngFor="let i of item.children" nz-menu-item [routerLink]="item.link">
+                <span nz-icon [nzType]="i.icon"></span>
+                <span>{{i.title}}</span>
+              </li>
+            </ul>
+          </li>
+        </ng-template>
+
+      </ng-container>
+
+
+    </ul>
   </nz-sider>
   <nz-layout>
     <nz-header>
       <div class="app-header">
-        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-            <span class="trigger"
-               nz-icon
-               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-            ></span>
-        </span>
+        <div nz-row>
+          <div nz-col nzSpan="8">
+            <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+              <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
+            </span>
+          </div>
+          <div nz-col nzSpan="4" nzOffset="12" style="display: flex; align-items: center;">
+            <nz-space nz-dropdown [nzDropdownMenu]="menu" nzDirection="horizontal" nzAlign="center" nzSize="large">
+              <nz-avatar nzSrc="../../../../assets/images/avatar/user.png"></nz-avatar>
+              <h5 style="margin-bottom: 0; margin-left: 10px;" nz-typography>{{user?.fullName}}</h5>
+            </nz-space>
+
+            <nz-dropdown-menu #menu="nzDropdownMenu" nzPlacement="bottomCenter">
+              <ul nz-menu [nzMode]="'vertical'">
+                <li nz-menu-item>
+                  <span nz-icon nzType="profile" nzTheme="outline"></span>
+                  <span style="margin-left: 10px;">Manage Profile</span>
+                </li>
+                <li nz-menu-item>
+                  <span nz-icon nzType="setting" nzTheme="outline"></span>
+                  <span style="margin-left: 10px;">Settings</span>
+                </li>
+                <li nz-menu-item>
+                  <span nz-icon nzType="profile" nzTheme="outline"></span>
+                  <span style="margin-left: 10px;">Credit Card</span>
+                </li>
+                <li nz-menu-item>
+                  <span nz-icon nzType="setting" nzTheme="outline"></span>
+                  <span style="margin-left: 10px;">Help & Contact</span>
+                </li>
+                <li nz-menu-item (click)="logout()">
+                  <span nz-icon nzType="logout" nzTheme="outline"></span>
+                  <span style="margin-left: 10px;">Log out</span>
+                </li>
+              </ul>
+            </nz-dropdown-menu>
+          </div>
+        </div>
+
       </div>
     </nz-header>
     <nz-content>
