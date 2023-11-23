@@ -1,0 +1,49 @@
+<div class="home-page">
+    <section class="banner-home">
+        <div class="content">
+            <p class="title-small">master law firm marketing</p>
+            <h3 class="title-banner">we make mass tork easy</h3>
+            <button class="btn-dark-blue" nz-button nzType="primary" nzShape="round" nzSize="large">
+                Get Started
+            </button>
+        </div>
+    </section>
+    <section class="banner-attribute">
+        <h1>lĩnh vực hành nghề</h1>
+        <!-- <mat-grid-list cols="4" rowHeight="28vh">
+            <mat-grid-tile *ngFor="let item of attributes">
+                <mat-card class="card-attribute">
+                    <img mat-card-sm-image [src]="item.img">
+                    <mat-card-content>{{item.title}}</mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list> -->
+        <div nz-row [nzGutter]="[16, 24]">
+            <div *ngFor="let item of attributes" nz-col class="gutter-row" [nzSpan]="6">
+                <nz-card class="card-attribute" nzHoverable [nzCover]="coverTemplate">
+                    <nz-card-meta class="title" [nzTitle]="item.title"></nz-card-meta>
+                </nz-card>
+                <ng-template #coverTemplate>
+                    <img alt="example" [src]="item.img" />
+                </ng-template>
+            </div>
+        </div>
+    </section>
+    <section class="banner-info">
+        <div class="col-left">
+            <h1>CHÚNG TÔI Ở ĐÂY</h1>
+            <p>Để giải đáp mọi vướng mắc về pháp luật cho bạn. <br />
+                Quyền lợi của bạn là ưu tiên hàng đầu của chúng tôi,
+                Hãy gửi yêu cầu nếu bạn cần luật sư giải quyết mọi vấn đề pháp lý của mình.
+            </p>
+            <button routerLink="/request-quote" class="btn-dark-blue" nz-button nzType="primary" nzSize="large" nzShape="round">
+                Gửi yêu cầu
+                <span nz-icon nzType="arrow-right" nzTheme="outline"></span>
+              </button>
+        </div>
+        <div class="col-right">
+            <img src="../../../assets/images/banner/banner-here.jpg" alt="">
+        </div>
+    </section>
+
+</div>

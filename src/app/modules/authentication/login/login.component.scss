@@ -1,0 +1,84 @@
+.auth-page {
+   padding: 5% 40%;
+   h4 {
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    color: var(--dark-blue);
+    // text-align: center;
+}
+   .login-form {
+    max-width: 300px;
+  }
+
+  .login-form-margin {
+    margin-bottom: 16px;
+  }
+
+  .login-form-forgot {
+    float: right;
+  }
+
+  .login-form-button {
+    width: 100%;
+  }
+    // .card-form {
+    //     min-width: 38%;
+    //     background-color: var(--grey-blue);
+    //     text-align: center;
+    //     margin-top: 8vh;
+    //     margin-bottom: 8vh;
+    //     padding: 50px 0;
+    //     border-radius: 8px;
+    //     box-shadow: 2px 3px 4px var(--light-grey);
+    //     max-height: 70vh;
+
+    //     h4 {
+    //         font-size: 1.6rem;
+    //         text-transform: uppercase;
+    //         color: var(--dark-blue);
+    //         padding: 15px 0 30px 0;
+    //     }
+
+    //     .form-control {
+    //         display: flex;
+    //         justify-content: center;
+    //         align-items: center;
+    //         margin-bottom: 10px;
+
+    //         label {
+    //             width: 120px;
+    //             align-items: center;
+    //             margin-top: -15px;
+    //         }
+
+    //         .form-control-forgot {
+    //             display: flex;
+    //             justify-content: space-between;
+    //             width: 300px;
+    //             margin-top: -12px;
+
+    //             a {
+    //                 text-decoration: none;
+    //                 color: blue;
+    //                 margin-top: 10px;
+    //             }
+    //         }
+
+    //         .btn-submit{
+    //             background-color: var(--dark-blue);
+    //             width: 300px;
+    //         }
+
+    //     }
+
+    //     .navigate-register{
+    //         margin-left: 40px;
+    //         margin-top: 25px;
+
+    //         a{
+    //             text-decoration: none;
+    //         }
+    //     }
+
+    // }
+}

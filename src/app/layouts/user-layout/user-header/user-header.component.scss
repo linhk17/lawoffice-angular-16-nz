@@ -1,0 +1,29 @@
+.sidenav-top {
+    padding: 15px 5%;
+    background-color: var(--grey-blue);
+
+    .menu {
+        line-height: 30px;
+    }
+
+}
+.menu {
+    text-align: end;
+    background-color: transparent;
+    border-bottom: 0;
+}
+.menu-sidenav {
+    padding: 20px 5%;
+
+    .logo {
+        width: 20%;
+
+        img {
+            width: 90%;
+        }
+    }
+    .menu {
+        font-size: 14px;
+        text-transform: uppercase;
+    } 
+}

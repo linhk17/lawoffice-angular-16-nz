@@ -1,1 +1,86 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/ng-zorro-antd/ng-zorro-antd.min.css";
+@import "../node_modules/ng-zorro-antd/style/index.min.css";
+@import "../node_modules/ng-zorro-antd/button/style/index.min.css";
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+    height: 100%;
+    
+}
+*{
+    font-family: Inter, sans-serif !important;
+}
+
+body {
+    margin: 0;
+}
+
+:root {
+    --dark: #2C3345;
+    --grey-blue: #a3bdd74a;
+    --dark-blue: #00264c;
+    --light-blue: #628fbc;
+    --volcano: #871400;
+    --oranger: #873800;
+    --light-red: #ad041d;
+    --red: #820014;
+    --cyan: #00474f;
+    --cyan-hover: #006d75;
+    --green: #135200;
+    --gold: #874d00;
+    --gold-light: #ffd666;
+    --purple: #22075e;
+    --magenta: #780650;
+    --grey: #595959;
+    --light-grey: #D8D8D8;
+    --body-background: #f0f1f3;
+}
+
+.bg-dark-blue{
+    background-color: var(--dark-blue) ;
+}
+.bg-light-blue{
+    background-color: var(--light-blue) ;
+}
+
+.btn-dark-blue{
+    background-color: var(--dark-blue) ;
+    border: 0;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    &:hover{
+        background-color: var(--light-blue);
+    }
+}
+.btn-light-blue{
+    background-color: var(--light-blue) ;
+    border: 0;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    &:hover{
+        background-color: var(--dark-blue);
+    }
+}
+.btn-add{
+    background-color: var(--cyan) ;
+    color: #fff ;
+    font-weight: bold;
+    letter-spacing: 0;
+}
+
+.btn-cancel{
+    background-color: var(--red) ;
+    color: #fff !important;
+    font-weight: bold;
+    letter-spacing: 0;
+}
+
+
+.mat-mdc-menu-panel {
+    margin-top: 22px;
+    max-width: 300px !important;
+    min-width: 200px !important
+}

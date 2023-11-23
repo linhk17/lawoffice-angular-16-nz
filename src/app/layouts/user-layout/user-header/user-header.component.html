@@ -1,0 +1,29 @@
+
+    <div nz-row class="sidenav-top">
+        <div nz-col nzSpan="8">
+           <app-input-search></app-input-search> 
+        </div>
+        <div nz-col nzSpan="12" nzOffset="4">
+            <ul nz-menu nzMode="horizontal" class="menu">
+                <li nz-menu-item *ngFor="let item of listSidenavTop">
+                  <span nz-icon [nzType]="item.icon"></span>
+                  {{item.title}}
+                </li>
+                <button class="btn-dark-blue" routerLink="/login" nz-button nzType="primary">Sign in</button>
+              </ul>
+        </div>
+      </div>
+      <div nz-row class="menu-sidenav">
+        <div nz-col nzSpan="8" class="logo">
+            <img src="./assets/images/logo/logo.png" />
+        </div>
+        <div nz-col nzSpan="12" nzOffset="4">
+            <ul nz-menu nzMode="horizontal" class="menu">
+                <li [routerLink]="item.link" nz-menu-item *ngFor="let item of listMenuSidenav">
+                  {{item.title}}
+                </li>
+              </ul>
+        </div>
+      </div>
+    
+
