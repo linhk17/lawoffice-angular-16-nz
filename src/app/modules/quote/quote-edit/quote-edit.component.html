@@ -1,1 +1,83 @@
-<p>quote-edit works!</p>
+<nz-card nzType="inner" style="margin-top:16px;" nzTitle="Thông tin báo giá">
+    <nz-descriptions nzTitle="Khách hàng">
+        <nz-descriptions-item nzTitle="Họ tên">{{quote?.khach_hang.ho_ten}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Email">{{quote?.khach_hang.email}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Số điện thoại">{{quote?.khach_hang.sdt}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Tỉnh/Thành">{{quote?.tinh_thanh}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Vấn đề">
+            {{quote?.van_de}}
+        </nz-descriptions-item>
+    </nz-descriptions>
+    <span nz-typography nzType="secondary">{{quote?.ngay_gui_phieu}}</span>
+    <nz-divider></nz-divider>
+    <form nz-form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+        <div nz-row>
+            <div nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="linh_vuc" nzRequired>Lĩnh vực</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please select your type!">
+                        <nz-select id="linh_vuc" formControlName="linh_vuc"
+                            nzPlaceHolder="Select a option and change input text above"
+                            (ngModelChange)="getService($event)">
+                            <nz-option *ngFor="let item of types" [nzValue]="item._id"
+                                [nzLabel]="item.ten_linh_vuc"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="dich_vu" nzRequired>Dịch vụ</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please select your service!">
+                        <nz-select id="dich_vu" formControlName="dich_vu" (ngModelChange)="setPrice($event)"
+                            nzPlaceHolder="Select a option and change input text above">
+                            <nz-option *ngFor="let item of services" [nzValue]="item._id"
+                                [nzLabel]="item.ten_dv"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div nz-row>
+            <div nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="price">Tổng giá dự kiến</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input price">
+                        <input nz-input formControlName="tong_gia_du_kien" id="price" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="dktt" nzRequired>Điều khoản thanh toán</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please select your type!">
+                        <nz-select id="dktt" formControlName="dieu_khoan_thanh_toan"
+                            nzPlaceHolder="Select a option and change input text above">
+                            <nz-option *ngFor="let item of timePay" [nzValue]="item.ten" [nzLabel]="item.ten == 0 ? 'Thanh toán ngay' 
+                                : item.ten == -1 ? 'Thanh toán sau khi kết thúc' :  item.ten + ' ngày'"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div nz-row>
+            <div nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="note">Ghi chú (nếu có)</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input note">
+                        <textarea nz-input formControlName="ghi_chu" id="note" rows="3"
+                            placeholder="Write any thing"></textarea>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSpan="12">
+            </div>
+        </div>
+        <nz-form-item>
+            <nz-form-control [nzSpan]="7" [nzOffset]="4">
+                <button style="width: 100%;" nz-button class="btn-dark-blue" nzType="primary">Tạo báo giá</button>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+
+</nz-card>

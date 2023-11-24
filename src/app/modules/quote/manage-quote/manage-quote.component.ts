@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import * as dayjs from 'dayjs';
 import { QuoteService } from 'src/app/services/quote.service';
 import { Quote } from 'src/app/shared/models/quote.interface';
 
@@ -32,7 +31,7 @@ export class ManageQuoteComponent {
           name: item.khach_hang.ho_ten,
           email: item.khach_hang.email,
           phone: item.khach_hang.sdt,
-          created: dayjs(item.ngay_gui_phieu).format('DD/MM/YYYY hh:mm'),
+          created: item.ngay_gui_phieu,
           status: item.status
         }
       }

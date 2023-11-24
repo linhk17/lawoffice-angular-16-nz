@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { QuoteDetailComponent } from './quote-detail/quote-detail.component';
 import { QuoteEditComponent } from './quote-edit/quote-edit.component';
+import { CalendarModule } from '../calendar/calendar.module';
+import { ModalAddCalendarComponent } from '../calendar/modal-add-calendar/modal-add-calendar.component';
 
 
 
@@ -15,14 +17,15 @@ import { QuoteEditComponent } from './quote-edit/quote-edit.component';
     ManageQuoteComponent,
     RequestQuoteComponent,
     QuoteDetailComponent,
-    QuoteEditComponent
+    QuoteEditComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    CalendarModule
   ]
 })
 export class QuoteModule { }

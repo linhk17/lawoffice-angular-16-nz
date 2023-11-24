@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
-import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
+import { registerLocaleData } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,7 +16,6 @@ import { RedirectGuard } from './shared/guards/redirect.guard';
 import { SharedModule } from './shared/shared.module';
 import { ModulesModule } from './modules/modules.module';
 registerLocaleData(en);
-
 @NgModule({
   declarations: [
     AppComponent
@@ -31,6 +30,7 @@ registerLocaleData(en);
     LayoutsModule,
     ModulesModule
   ],
+  
   providers: [
     { provide: NZ_I18N, useValue: en_US },
     AuthGuard, RedirectGuard,

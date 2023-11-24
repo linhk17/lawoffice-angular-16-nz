@@ -9,24 +9,21 @@
     </div>
     <ul style="width: 100%;" nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
       <ng-container *ngFor="let item of listSideNav">
-        <li nz-menu-item [routerLink]="item.link" *ngIf="!item.children; else expand">
+        <li nz-menu-item [routerLink]="!item.children ? item.link : ''" *ngIf="!item.children; else expand">
           <span nz-icon [nzType]="item.icon"></span>
           <span>{{item.title}}</span>
         </li>
         <ng-template #expand>
           <li nz-submenu nzOpen="true" [nzTitle]="item.title" [nzIcon]="item.icon">
             <ul>
-              <li *ngFor="let i of item.children" nz-menu-item [routerLink]="item.link">
+              <li *ngFor="let i of item.children" nz-menu-item [routerLink]="i.link">
                 <span nz-icon [nzType]="i.icon"></span>
                 <span>{{i.title}}</span>
               </li>
             </ul>
           </li>
         </ng-template>
-
       </ng-container>
-
-
     </ul>
   </nz-sider>
   <nz-layout>

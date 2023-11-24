@@ -1,0 +1,29 @@
+<nz-modal nzWidth="800px" [(nzVisible)]="isVisible" [nzTitle]="data.tieu_de" (nzOnCancel)="handleCancel()">
+    <ng-container *nzModalContent>
+        <nz-descriptions nzTitle="Thông tin chi tiết">
+            <nz-descriptions-item nzTitle="Họ tên">{{data.khach_hang.ho_ten}}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Email">{{data.khach_hang.email}}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Số điện thoại">{{data.khach_hang.sdt}}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Tỉnh/Thành">{{data.tinh_thanh}}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Ngày gửi">{{data.ngay_gui_phieu | date: 'dd/MM/yyyy, h:mm a'}}</nz-descriptions-item>
+        </nz-descriptions>
+        <nz-divider></nz-divider>
+        <nz-descriptions nzTitle="Chuyên môn liên quan">
+            <nz-descriptions-item nzTitle="Lĩnh vực">{{data.linh_vuc.ten_linh_vuc}}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Dịch vụ">{{data.dich_vu.ten_dv}}</nz-descriptions-item>
+            <nz-descriptions-item
+                nzTitle="Điều khoản thanh toán">{{data.dieu_khoan_thanh_toan}}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Vấn đề khách hàng">{{data.van_de}}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Ghi chú (nếu có)">{{data.ghi_chu}}</nz-descriptions-item>
+        </nz-descriptions>
+        <nz-divider></nz-divider>
+        <nz-descriptions nzTitle="Thông tin chi tiết">
+            <nz-descriptions-item nzTitle="Thời gian">{{data.linh_vuc.ten_linh_vuc}}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Dịch vụ">{{data.dich_vu.ten_dv}}</nz-descriptions-item>
+            <nz-descriptions-item
+                nzTitle="Điều khoản thanh toán">{{data.dieu_khoan_thanh_toan}}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Vấn đề khách hàng">{{data.van_de}}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Ghi chú (nếu có)">{{data.ghi_chu}}</nz-descriptions-item>
+        </nz-descriptions>
+    </ng-container>
+</nz-modal>

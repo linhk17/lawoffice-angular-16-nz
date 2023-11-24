@@ -1,0 +1,22 @@
+<nz-row>
+    <nz-col nzSpan="5">
+        <div [ngStyle]="{ border: '1px solid #d9d9d9', borderRadius: '4px' }">
+            <nz-calendar [nzFullscreen]="false"></nz-calendar>
+        </div>
+    </nz-col>
+    <nz-col nzSpan="18" nzOffset="1">
+        <nz-card class="card-calendar" nzTitle="Lịch làm việc" [nzExtra]="extraTemplate">
+            <full-calendar [options]="calendarOptions" [deepChangeDetection]="true"></full-calendar>
+        </nz-card>
+        <ng-template #extraTemplate>
+            <nz-segmented [nzOptions]="[
+                        { label: 'Tất cả', value: 'List', icon: 'bars' },
+                        { label: 'Lịch của tôi', value: 'Kanban', icon: 'appstore' }
+            ]"></nz-segmented>
+        </ng-template>
+    </nz-col>
+</nz-row>
+<ng-container *ngIf="showModal">
+    <app-modal-detail-calendar (isCloseModal)="showModal = !showModal" [isVisible]="showModal"
+        [data]="data"></app-modal-detail-calendar>
+</ng-container>

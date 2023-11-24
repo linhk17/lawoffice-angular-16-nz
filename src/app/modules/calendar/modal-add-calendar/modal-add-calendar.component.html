@@ -1,0 +1,118 @@
+<nz-modal nzWidth="800px" [(nzVisible)]="isVisible" nzTitle="Tạo lịch hẹn" (nzOnCancel)="handleCancel()">
+    <form nz-form [formGroup]="timeAppointForm">
+        <ng-container *nzModalContent>
+            <div nz-row>
+                <div nz-col nzSpan="12">
+                    <nz-form-item>
+                        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="title">Tiêu đề:</nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input title">
+                            <input nz-input formControlName="tieu_de" id="title" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col nzSpan="12">
+                    <nz-form-item>
+                        <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="loai_lich" nzRequired>Tính chất</nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please select your type!">
+                            <nz-select id="loai_lich" formControlName="loai_lich"
+                                nzPlaceHolder="Select a option and change input text above">
+                                <nz-option *ngFor="let item of typeAppoints" [nzValue]="item.ten"
+                                    [nzLabel]="item.ten"></nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+            <nz-tabset nzType="card">
+                <nz-tab nzTitle="Khách hàng">
+                    <nz-descriptions nzTitle="Thông tin chi tiết">
+                        <nz-descriptions-item nzTitle="Họ tên">{{data.khach_hang.ho_ten}}</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Email">{{data.khach_hang.email}}</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Số điện thoại">{{data.khach_hang.sdt}}</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Tỉnh/Thành">{{data.tinh_thanh}}</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Ngày gửi">{{data.ngay_gui_phieu | date: 'dd/MM/yyyy, h:mm a'}}</nz-descriptions-item>
+                    </nz-descriptions>
+                </nz-tab>
+                <nz-tab nzTitle="Thông tin chi tiết">
+                    <nz-descriptions nzTitle="Chuyên môn liên quan">
+                        <nz-descriptions-item nzTitle="Lĩnh vực">{{data.linh_vuc.ten_linh_vuc}}</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Dịch vụ">{{data.dich_vu.ten_dv}}</nz-descriptions-item>
+                        <nz-descriptions-item
+                            nzTitle="Điều khoản thanh toán">{{data.dieu_khoan_thanh_toan}}</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Vấn đề khách hàng">{{data.van_de}}</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Ghi chú (nếu có)">{{data.ghi_chu}}</nz-descriptions-item>
+                    </nz-descriptions>
+                </nz-tab>
+                <nz-tab nzTitle="Thông tin cuộc hẹn">
+
+                    <div nz-row>
+                        <div nz-col nzSpan="11">
+                            <nz-form-item>
+                                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="thoi_gian">Thời
+                                    gian</nz-form-label>
+                                <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Please input time">
+                                    <nz-date-picker style="width: 100%;" nzPlaceHolder="Start" formControlName="start"
+                                        [nzDisabledDate]="disabledDate" nzShowTime
+                                        nzFormat="yyyy-MM-dd HH:mm" [nzShowTime]="{ nzFormat: 'HH:mm' }"></nz-date-picker>
+                                </nz-form-control>
+                            </nz-form-item>
+                            <nz-form-item>
+                                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="ghi_chu">Ghi chú</nz-form-label>
+                                <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Please input note">
+                                    <textarea nz-input formControlName="ghi_chu" id="ghi_chu" rows="3"
+                                        placeholder="Write any thing"></textarea>
+                                </nz-form-control>
+                            </nz-form-item>
+                            <nz-form-item>
+                                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="mo_ta">Mô tả</nz-form-label>
+                                <nz-form-control [nzSm]="18" [nzXs]="24" nzErrorTip="Please input note">
+                                    <textarea nz-input formControlName="mo_ta" id="mo_ta" rows="3"
+                                        placeholder="Write any thing"></textarea>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div nz-col nzSpan="10" nzOffset="2">
+                            <nz-form-item>
+                                <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="thoi_gian">Thời
+                                    gian</nz-form-label>
+                                <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="Please input time">
+                                    <nz-date-picker style="width: 100%;" nzPlaceHolder="End" formControlName="end"
+                                        [nzDisabledDate]="disabledDate" nzFormat="yyyy-MM-dd HH:mm"
+                                        [nzShowTime]="{ nzFormat: 'HH:mm' }"></nz-date-picker>
+                                </nz-form-control>
+                            </nz-form-item>
+                            <b>Người phụ trách</b>
+                            <nz-divider></nz-divider>
+                            <nz-form-item>
+                                <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="bo_phan" nzRequired>Bộ phận</nz-form-label>
+                                <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="Please select your type!">
+                                    <nz-select id="bo_phan" formControlName="bo_phan"
+                                        (ngModelChange)="setEmployee($event)"
+                                        nzPlaceHolder="Select a option and change input text above">
+                                        <nz-option *ngFor="let item of parts" [nzValue]="item._id"
+                                            [nzLabel]="item.ten_bo_phan"></nz-option>
+                                    </nz-select>
+                                </nz-form-control>
+                            </nz-form-item>
+                            <nz-form-item>
+                                <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="nhan_vien" nzRequired>Nhân
+                                    viên</nz-form-label>
+                                <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="Please select your type!">
+                                    <nz-select id="nhan_vien" formControlName="nhan_vien"
+                                        nzPlaceHolder="Select a option and change input text above">
+                                        <nz-option *ngFor="let item of users" [nzValue]="item._id"
+                                            [nzLabel]="item.ho_ten"></nz-option>
+                                    </nz-select>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                </nz-tab>
+            </nz-tabset>
+        </ng-container>
+        <div *nzModalFooter>
+            <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
+            <button nz-button nzType="primary" (click)="onSubmit()">Submit</button>
+        </div>
+    </form>
+</nz-modal>

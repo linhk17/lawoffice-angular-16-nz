@@ -10,6 +10,7 @@ import { RequestQuoteComponent } from './modules/quote/request-quote/request-quo
 import { ManageQuoteComponent } from './modules/quote/manage-quote/manage-quote.component';
 import { QuoteDetailComponent } from './modules/quote/quote-detail/quote-detail.component';
 import { QuoteEditComponent } from './modules/quote/quote-edit/quote-edit.component';
+import { ManageCalendarComponent } from './modules/calendar/manage-calendar/manage-calendar.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
@@ -47,16 +48,33 @@ const routes: Routes = [
     children: [
       {
         path: 'manage-quote',
-        component: ManageQuoteComponent
+        
+        children: [
+          {
+            path: '',
+            component: ManageQuoteComponent,
+          },
+          {
+            path: ':id',
+            component: QuoteDetailComponent
+          },
+          {
+            path: 'edit/:id',
+            component: QuoteEditComponent
+          },
+        ]
       },
       {
-        path: 'manage-quote/:id',
-        component: QuoteDetailComponent
+        path: 'manage-calendar',
+        
+        children: [
+          {
+            path: '',
+            component: ManageCalendarComponent,
+          },
+        ]
       },
-      {
-        path: 'manage-quote/edit/:id',
-        component: QuoteEditComponent
-      },
+      
     ]
   }
 ];

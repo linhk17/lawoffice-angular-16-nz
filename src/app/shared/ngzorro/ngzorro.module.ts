@@ -19,6 +19,11 @@ import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzCalendarModule } from 'ng-zorro-antd/calendar';
+import { NzSegmentedModule } from 'ng-zorro-antd/segmented';
 
 
 
@@ -46,7 +51,12 @@ import { NzStepsModule } from 'ng-zorro-antd/steps';
     NzDescriptionsModule,
     NzDividerModule,
     NzPopconfirmModule,
-    NzStepsModule
+    NzStepsModule,
+    NzModalModule,
+    NzTabsModule,
+    NzDatePickerModule,
+    NzCalendarModule,
+    NzSegmentedModule
   ]
 })
 export class NgZorroModule { }

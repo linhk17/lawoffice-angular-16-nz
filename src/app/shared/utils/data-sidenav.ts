@@ -16,7 +16,7 @@ export const menuSideNav = [
       {
         icon: 'pie-chart',
         title: 'All Time Appointment',
-        link: 'manage-quote'
+        link: 'manage-calendar'
       },
       {
         icon: 'dashboard',
@@ -31,7 +31,6 @@ export const menuSideNav = [
   {
     icon: 'pie-chart',
     title: 'Manage Info',
-    link: 'manage-quote',
     children: [
         {
           icon: 'profile',
