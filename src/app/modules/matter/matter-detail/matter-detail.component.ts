@@ -13,6 +13,8 @@ import { UserService } from 'src/app/services/user.service';
 export class MatterDetailComponent {
   matter: any;
   userAccess: any;
+  edit: boolean = false;
+
   constructor(
     private route: ActivatedRoute,
     private matterService: MatterService,
@@ -35,5 +37,14 @@ export class MatterDetailComponent {
           })
         });
     });
+  
   }
+  updateMatter(event: any){
+    this.matterService.update(this.matter._id, {...this.matter, ...event})
+    .subscribe(res => this.matter = res
+    )    
+  }
+  // isEdit(){
+  //   this.edit = true;
+  // }
 }

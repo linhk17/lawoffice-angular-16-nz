@@ -6,10 +6,12 @@
     <nz-breadcrumb-item>Quote List</nz-breadcrumb-item>
 </nz-breadcrumb>
 <nz-space style="margin: 20px 0;">
-    <button [routerLink]="'/admin/manage-matter/add/'" *nzSpaceItem nz-button nzType="primary" class="btn-dark-blue">
-        <span nz-icon nzType="edit"></span>
-        Vụ việc mới
-    </button>
+    <ng-container  *ngIf="user.role == 1">
+        <button [routerLink]="'/admin/manage-matter/add/'" *nzSpaceItem nz-button nzType="primary" class="btn-dark-blue">
+            <span nz-icon nzType="edit"></span>
+            Vụ việc mới
+        </button>
+    </ng-container>
     <button [routerLink]="'/admin/manage-quote/add/'" *nzSpaceItem nz-button nzType="primary" class="btn-success">
         <span nz-icon nzType="download"></span>
         Export Excel

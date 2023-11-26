@@ -26,4 +26,17 @@ export class MatterService {
       environment['apiUrl'] + this.prefixApi + '/' + id
     )
   }
+
+  public findByIdAccess(data: any): Observable<any>{
+    return this.httpClient.post<any>(
+      environment['apiUrl'] + this.prefixApi + '/findByIdAccess', data
+    )
+  }
+  public update(id: string, data: any): Observable<any>{
+    console.log(id, data);
+    
+    return this.httpClient.put<any>(
+      environment['apiUrl'] + this.prefixApi + '/' + id, data
+    )
+  }
 }

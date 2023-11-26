@@ -5,6 +5,8 @@ import {
   NonNullableFormBuilder,
   Validators,
 } from '@angular/forms';
+import { Route, Router } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { MatterService } from 'src/app/services/matter.service';
 import { ServiceService } from 'src/app/services/service.service';
 import { TimePayService } from 'src/app/services/time-pay.service';
@@ -45,7 +47,10 @@ export class MatterFormComponent {
     private timePayService: TimePayService,
     private userService: UserService,
     private matterService: MatterService,
-    private fb: NonNullableFormBuilder
+    private fb: NonNullableFormBuilder,
+    private nzMessageService: NzMessageService,
+    private router: Router
+
   ) {
     this.matterForm = this.fb.group({
       ten_vu_viec: ['', [Validators.required]],
@@ -108,8 +113,12 @@ export class MatterFormComponent {
         truy_cap: {
           khach_hang: this.matterForm.value.khach_hang_access,
           nhan_vien: this.matterForm.value.luat_su_access,
-        }
-      }).subscribe(res => console.log(res)
+        },
+        status: 0
+      }).subscribe(res => {
+        this.nzMessageService.success('Tạo vụ việc thành công');
+        this.router.navigate(['/admin/manage-matter/'])
+      }
       )
     } else {
       Object.values(this.matterForm.controls).forEach((control) => {

@@ -141,7 +141,69 @@ const routes: Routes = [
       },
       
     ]
-  }
+  },
+  {
+    path: "law",
+    canActivate: [AuthGuard],
+    component: ManageLayoutComponent,
+    data: { 
+      expectedRole: 2
+    },
+    children: [
+      {
+        path: 'manage-matter',
+        
+        children: [
+          {
+            path: '',
+            component: ManageMatterComponent,
+          },
+          {
+            path: 'add',
+            component: MatterFormComponent
+          },
+          {
+            path: ':id',
+            component: MatterDetailComponent
+          },
+          
+          {
+            path: ':id/edit',
+            component: MatterDetailComponent
+          },
+        ]
+      },
+      {
+        path: 'manage-calendar',
+        
+        children: [
+          {
+            path: '',
+            component: ManageCalendarComponent,
+          },
+        ]
+      },
+      {
+        path: 'manage-quote',
+        
+        children: [
+          {
+            path: '',
+            component: ManageQuoteComponent,
+          },
+          {
+            path: ':id',
+            component: QuoteDetailComponent
+          },
+          {
+            path: 'edit/:id',
+            component: QuoteEditComponent
+          },
+        ]
+      },
+      
+    ]
+  },
 ];
 
 @NgModule({

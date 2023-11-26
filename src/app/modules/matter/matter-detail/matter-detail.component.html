@@ -1,12 +1,12 @@
 <div nz-row style="margin-bottom: 20px;">
     <div nz-col nzSpan="8">
         <nz-space>
-            <button [routerLink]="'/counselor/manage-quote/edit/'" *nzSpaceItem nz-button nzType="primary"
+            <button routerLink="edit" *nzSpaceItem nz-button nzType="primary"
                 class="btn-dark-blue">
                 <span nz-icon nzType="form"></span>
                 Hoá đơn mới
             </button>
-            <button [routerLink]="'/counselor/manage-quote/edit/'" *nzSpaceItem nz-button nzType="primary"
+            <button routerLink="edit" *nzSpaceItem nz-button nzType="primary"
                 class="btn-dark-blue">
                 <span nz-icon nzType="edit"></span>
                 Chỉnh sửa
@@ -25,8 +25,8 @@
     <nz-card [nzTitle]="action" nzSize="default">
         <nz-descriptions nzTitle="Thông tin vụ việc" [nzColumn]="2">
             <nz-descriptions-item nzTitle="Tên vụ việc">{{matter?.ten_vu_viec}}</nz-descriptions-item>
-            <nz-descriptions-item nzTitle="Lĩnh vực">{{matter?.linh_vuc.ten_linh_vuc}}</nz-descriptions-item>
-            <nz-descriptions-item nzTitle="Dịch vụ">{{matter?.dich_vu.ten_dv}}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Lĩnh vực">{{matter?.linh_vuc?.ten_linh_vuc}}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Dịch vụ">{{matter?.dich_vu?.ten_dv}}</nz-descriptions-item>
             <nz-descriptions-item nzTitle="Ngày lập">{{matter?.ngay_lap | date: 'dd/MM/yyyy, h:mm a'}}
             </nz-descriptions-item>
         </nz-descriptions>
@@ -83,7 +83,9 @@
                 </nz-row>
             </nz-tab>
             <nz-tab nzTitle="Tài liệu">
-                <app-matter-documents [documents]="matter?.tai_lieu"></app-matter-documents>
+                <app-matter-documents 
+                [documents]="matter?.tai_lieu ? matter.tai_lieu : []"
+                (uploadFile)="updateMatter($event)"></app-matter-documents>
             </nz-tab>
             <nz-tab nzTitle="Liên hệ">
                 <app-matter-contacts [contacts]="matter?.lien_he"></app-matter-contacts>

@@ -30,6 +30,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
 
 
 
@@ -68,7 +69,8 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
     NzToolTipModule,
     NzBadgeModule,
     NzListModule,
-    NzInputNumberModule
+    NzInputNumberModule,
+    NzUploadModule
   ]
 })
 export class NgZorroModule { }

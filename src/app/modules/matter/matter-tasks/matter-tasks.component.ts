@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class MatterTasksComponent {
   @Input() tasks: any;
+  @Input() isEdit: boolean = false;
 }

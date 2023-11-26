@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { StorageService } from 'src/app/services/storage.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/shared/models/user.interface';
-import { menuSideNavTVV, menuSideNavAdmin } from 'src/app/shared/utils/data-sidenav';
+import { menuSideNavTVV, menuSideNavAdmin, menuSideNavLaw } from 'src/app/shared/utils/data-sidenav';
 
 @Component({
   selector: 'app-manage-layout',
@@ -23,7 +23,8 @@ export class ManageLayoutComponent {
   ngOnInit(){
     this.getProfileUser();
     this.role = this.storage.getUser().role;
-    this.listSideNav = this.role == 1 ? menuSideNavAdmin : menuSideNavTVV
+    this.listSideNav = this.role == 1 ? menuSideNavAdmin 
+    : this.role == 2 ? menuSideNavLaw : menuSideNavTVV
   }
   getProfileUser() {
     this.userService.getProfileUser().pipe()

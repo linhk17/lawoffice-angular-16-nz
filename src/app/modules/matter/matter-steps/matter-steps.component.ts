@@ -7,4 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class MatterStepsComponent {
   @Input() steps: any;
+  @Input() isEdit: boolean = false;
+
 }

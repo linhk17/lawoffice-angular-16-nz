@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class MatterContactsComponent {
   @Input() contacts: any;
+  @Input() isEdit: boolean = false;
 }
