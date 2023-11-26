@@ -1,0 +1,23 @@
+<nz-table [nzTotal]="50" #basicTable [nzData]="steps">
+    <thead>
+        <tr class="title-table">
+            <th>Tên quy trình</th>
+            <th>Mô tả</th>
+            <th>Trạng thái</th>
+            <th>Cập nhật</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of basicTable.data">
+            <td>{{data.ten_qt}}</td>
+            <td>{{data.mo_ta}}</td>
+            <td>
+                <nz-tag [nzColor]="
+                data.status == 1 ? 'success' : 'processing'">
+                {{
+                data.status == 0 ? 'Đang thực hiện' : 'Hoàn thành'
+                }}
+            </nz-tag></td>
+        </tr>
+    </tbody>
+</nz-table>

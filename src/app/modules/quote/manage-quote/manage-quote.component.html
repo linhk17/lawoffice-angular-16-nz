@@ -5,7 +5,23 @@
     </nz-breadcrumb-item>
     <nz-breadcrumb-item>Quote List</nz-breadcrumb-item>
 </nz-breadcrumb>
-
+<nz-space style="margin: 20px 0;">
+    <button [routerLink]="'/counselor/manage-quote/add/'" *nzSpaceItem nz-button nzType="primary"
+      class="btn-dark-blue">
+      <span nz-icon nzType="edit"></span>
+      Báo giá mới
+    </button>
+    <button [routerLink]="'/counselor/manage-quote/add/'" *nzSpaceItem nz-button nzType="primary"
+      class="btn-success">
+      <span nz-icon nzType="download"></span>
+      Export Excel
+    </button>
+    <button [routerLink]="'/counselor/manage-quote/add/'" *nzSpaceItem nz-button nzType="primary" nzDanger>
+    <span nz-icon nzType="download"></span>
+    Export PDF
+  </button>
+  </nz-space>
+<nz-alert style="margin-bottom: 20px;" nzType="info" nzMessage="Filtering 8 out of 8 items. Filter the next 0 items"></nz-alert>
 <nz-table #basicTable [nzData]="dataSource">
     <thead>
         <tr class="title-table">

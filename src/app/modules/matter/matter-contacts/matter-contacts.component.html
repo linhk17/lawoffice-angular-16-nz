@@ -1,0 +1,23 @@
+<nz-table [nzTotal]="50" #basicTable [nzData]="contacts">
+    <thead>
+        <tr class="title-table">
+            <th>Họ tên</th>
+            <th>Giới tính</th>
+            <th>Năm sinh</th>
+            <th>Số điện thoại</th>
+            <th>Địa chỉ</th>
+            <th>Mối quan hệ</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of basicTable.data">
+            <td>{{data.ho_ten}}</td>
+            <td>{{data.gioi_tinh}}</td>
+            <td>{{data.nam_sinh}}</td>
+            <td>{{data.sdr}}</td>
+            <td>{{data.dia_chi}}</td>
+            <td>{{data.mqh}}</td>
+        </tr>
+    </tbody>
+</nz-table>

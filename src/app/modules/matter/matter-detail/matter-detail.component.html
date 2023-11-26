@@ -1,0 +1,108 @@
+<div nz-row style="margin-bottom: 20px;">
+    <div nz-col nzSpan="8">
+        <nz-space>
+            <button [routerLink]="'/counselor/manage-quote/edit/'" *nzSpaceItem nz-button nzType="primary"
+                class="btn-dark-blue">
+                <span nz-icon nzType="form"></span>
+                Hoá đơn mới
+            </button>
+            <button [routerLink]="'/counselor/manage-quote/edit/'" *nzSpaceItem nz-button nzType="primary"
+                class="btn-dark-blue">
+                <span nz-icon nzType="edit"></span>
+                Chỉnh sửa
+            </button>
+        </nz-space>
+    </div>
+    <div nz-col nzSpan="10" nzOffset="6">
+        <!-- <nz-steps [nzCurrent]="quote?.status">
+        <nz-step nzTitle="Pending"></nz-step>
+        <nz-step nzTitle="In Progress"></nz-step>
+        <nz-step nzTitle="Success"></nz-step>
+      </nz-steps> -->
+    </div>
+</div>
+<nz-ribbon nzText="Chưa thanh toán">
+    <nz-card [nzTitle]="action" nzSize="default">
+        <nz-descriptions nzTitle="Thông tin vụ việc" [nzColumn]="2">
+            <nz-descriptions-item nzTitle="Tên vụ việc">{{matter?.ten_vu_viec}}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Lĩnh vực">{{matter?.linh_vuc.ten_linh_vuc}}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Dịch vụ">{{matter?.dich_vu.ten_dv}}</nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Ngày lập">{{matter?.ngay_lap | date: 'dd/MM/yyyy, h:mm a'}}
+            </nz-descriptions-item>
+        </nz-descriptions>
+        <nz-divider></nz-divider>
+        <nz-row>
+            <nz-col nzSpan="12">
+                <nz-descriptions nzTitle="Luật sư phụ trách" [nzColumn]="2">
+                    <nz-descriptions-item nzTitle="Họ tên">{{matter?.luat_su.ho_ten}}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Số điện thoại">{{matter?.luat_su.account.sdt}}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Email">{{matter?.luat_su.email}}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Chức vụ">{{matter?.luat_su.chuc_vu.ten_chuc_vu}}
+                    </nz-descriptions-item>
+                </nz-descriptions>
+            </nz-col>
+            <nz-col nzSpan="12">
+                <nz-descriptions nzTitle="Khách hàng" [nzColumn]="2">
+                    <nz-descriptions-item nzTitle="Họ tên">{{matter?.khach_hang.ho_ten}}</nz-descriptions-item>
+                    <nz-descriptions-item
+                        nzTitle="Số điện thoại">{{matter?.khach_hang.account.sdt}}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Email">{{matter?.khach_hang.email}}</nz-descriptions-item>
+                </nz-descriptions>
+            </nz-col>
+        </nz-row>
+        <nz-tabset nzType="card" style="margin-top: 20px;">
+            <nz-tab nzTitle="Thiết lập">
+                <nz-row>
+                    <nz-col nzSpan="14">
+                        <nz-descriptions nzTitle="Thiết lập chi phí" [nzColumn]="2">
+                            <nz-descriptions-item nzTitle="Điều khoản thanh toán">{{matter?.dieu_khoan_thanh_toan.ten}}
+                                ngày</nz-descriptions-item>
+                            <nz-descriptions-item nzTitle="Tổng tiền">{{matter?.tong_tien | currency : 'VND' :
+                                'code'}}</nz-descriptions-item>
+                            <nz-descriptions-item
+                                nzTitle="Chiết khấu hoa hồng">{{matter?.chiet_khau_hoa_hong}}%</nz-descriptions-item>
+                        </nz-descriptions>
+                    </nz-col>
+                    <nz-col nzSpan="8">
+                        <h3 style="font-weight: bold;">Quyền truy cập</h3>
+                        <nz-list nzItemLayout="horizontal">
+                            <nz-list-item *ngFor="let user of userAccess">
+                                <nz-list-item-meta nzAvatar="assets/images/avatar/user.png"
+                                    [nzDescription]="user.email">
+                                    <nz-list-item-meta-title>
+                                        {{user.ho_ten}}
+                                    </nz-list-item-meta-title>
+                                </nz-list-item-meta>
+                                <nz-tag [nzColor]="user.account.quyen != 0 ? 'volcano' : 'geekblue'">
+                                    {{user.account.quyen != 0 ? 'Nhân viên' : 'Khách hàng'}}
+                                </nz-tag>
+                            </nz-list-item>
+                            <!-- <nz-list-empty *ngIf="data.length === 0"></nz-list-empty> -->
+                        </nz-list>
+                    </nz-col>
+                </nz-row>
+            </nz-tab>
+            <nz-tab nzTitle="Tài liệu">
+                <app-matter-documents [documents]="matter?.tai_lieu"></app-matter-documents>
+            </nz-tab>
+            <nz-tab nzTitle="Liên hệ">
+                <app-matter-contacts [contacts]="matter?.lien_he"></app-matter-contacts>
+             </nz-tab>
+            <nz-tab nzTitle="Công việc">
+                <app-matter-tasks [tasks]="matter?.cong_viec"></app-matter-tasks>
+            </nz-tab>
+            <nz-tab nzTitle="Quy trình thực hiện">
+                <app-matter-steps [steps]="matter?.quy_trinh"></app-matter-steps>
+            </nz-tab>
+            <nz-tab nzTitle="Chi phí phát sinh">Content of </nz-tab>
+            <nz-tab nzTitle="Hoá đơn khách hàng">Content of </nz-tab>
+        </nz-tabset>
+    </nz-card>
+    <ng-template #action>
+        <nz-steps [nzCurrent]="0" style="width: 50%;">
+            <nz-step nzTitle="Pending"></nz-step>
+            <nz-step nzTitle="In Progress"></nz-step>
+            <nz-step nzTitle="Success"></nz-step>
+        </nz-steps>
+    </ng-template>
+</nz-ribbon>

@@ -11,6 +11,9 @@ import { ManageQuoteComponent } from './modules/quote/manage-quote/manage-quote.
 import { QuoteDetailComponent } from './modules/quote/quote-detail/quote-detail.component';
 import { QuoteEditComponent } from './modules/quote/quote-edit/quote-edit.component';
 import { ManageCalendarComponent } from './modules/calendar/manage-calendar/manage-calendar.component';
+import { ManageMatterComponent } from './modules/matter/manage-matter/manage-matter.component';
+import { MatterDetailComponent } from './modules/matter/matter-detail/matter-detail.component';
+import { MatterFormComponent } from './modules/matter/matter-form/matter-form.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
@@ -36,6 +39,68 @@ const routes: Routes = [
         path: "request-quote",
         component: RequestQuoteComponent
       },
+    ]
+  },
+  {
+    path: "admin",
+    canActivate: [AuthGuard],
+    component: ManageLayoutComponent,
+    data: { 
+      expectedRole: 1
+    },
+    children: [
+      {
+        path: 'manage-matter',
+        
+        children: [
+          {
+            path: '',
+            component: ManageMatterComponent,
+          },
+          {
+            path: 'add',
+            component: MatterFormComponent
+          },
+          {
+            path: ':id',
+            component: MatterDetailComponent
+          },
+          
+          {
+            path: 'edit/:id',
+            component: QuoteEditComponent
+          },
+        ]
+      },
+      {
+        path: 'manage-calendar',
+        
+        children: [
+          {
+            path: '',
+            component: ManageCalendarComponent,
+          },
+        ]
+      },
+      {
+        path: 'manage-quote',
+        
+        children: [
+          {
+            path: '',
+            component: ManageQuoteComponent,
+          },
+          {
+            path: ':id',
+            component: QuoteDetailComponent
+          },
+          {
+            path: 'edit/:id',
+            component: QuoteEditComponent
+          },
+        ]
+      },
+      
     ]
   },
   {

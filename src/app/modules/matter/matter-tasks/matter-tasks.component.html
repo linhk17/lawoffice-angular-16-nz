@@ -1,0 +1,33 @@
+<nz-table [nzTotal]="50" #basicTable [nzData]="tasks">
+    <thead>
+        <tr class="title-table">
+            <th>Tên công việc</th>
+            <th>Phân công cho</th>
+            <th>Ngày giao</th>
+            <th>Hạn cuối</th>
+            <th>Trạng thái</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of basicTable.data">
+            <td>{{data.ten_cong_viec}}</td>
+            <td>{{data.nguoi_phu_trach.ho_ten}}</td>
+            <td>{{data.ngay_giao | date: 'dd/MM/yyyy, h:mm a'}}</td>
+            <td>{{data.han_chot_cong_viec | date: 'dd/MM/yyyy, h:mm a'}}</td>
+            <td>
+                <nz-tag [nzColor]="
+                data.status == 2 ? 'success' 
+                : data.status == 0 ? 'processing' 
+                : data.status == 1 ? 'magenta'
+                : 'warning'">
+                {{
+                data.status == 0 ? 'Đã giao'
+                : data.status == 1 ? 'Đã trình'
+                : data.status == 2 ? 'Hoàn thành'
+                : 'Tạm ngưng'
+                }}
+            </nz-tag></td>
+        </tr>
+    </tbody>
+</nz-table>

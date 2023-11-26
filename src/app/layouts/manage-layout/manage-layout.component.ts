@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { StorageService } from 'src/app/services/storage.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/shared/models/user.interface';
-import { menuSideNav } from 'src/app/shared/utils/data-sidenav';
+import { menuSideNavTVV, menuSideNavAdmin } from 'src/app/shared/utils/data-sidenav';
 
 @Component({
   selector: 'app-manage-layout',
@@ -11,7 +11,8 @@ import { menuSideNav } from 'src/app/shared/utils/data-sidenav';
 })
 export class ManageLayoutComponent {
   isCollapsed = false;
-  listSideNav = menuSideNav;
+  listSideNav: any = [];
+  role: string | number = '';
   public user?: User;
 
   constructor(
@@ -21,6 +22,8 @@ export class ManageLayoutComponent {
 
   ngOnInit(){
     this.getProfileUser();
+    this.role = this.storage.getUser().role;
+    this.listSideNav = this.role == 1 ? menuSideNavAdmin : menuSideNavTVV
   }
   getProfileUser() {
     this.userService.getProfileUser().pipe()

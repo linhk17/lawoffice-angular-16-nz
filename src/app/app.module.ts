@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,11 +15,12 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { RedirectGuard } from './shared/guards/redirect.guard';
 import { SharedModule } from './shared/shared.module';
 import { ModulesModule } from './modules/modules.module';
+import localeDe from '@angular/common/locales/de';
+import localeDeExtra from '@angular/common/locales/extra/de';
 registerLocaleData(en);
+registerLocaleData(localeDe, 'de-DE', localeDeExtra);
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -28,13 +29,18 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     SharedModule,
     LayoutsModule,
-    ModulesModule
+    ModulesModule,
   ],
-  
+
   providers: [
     { provide: NZ_I18N, useValue: en_US },
-    AuthGuard, RedirectGuard,
+    {
+      provide: LOCALE_ID,
+      useValue: 'de-DE',
+    },
+    AuthGuard,
+    RedirectGuard,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

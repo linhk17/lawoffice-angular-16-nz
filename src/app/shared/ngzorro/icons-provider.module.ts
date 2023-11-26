@@ -12,7 +12,11 @@ import {
   SettingOutline,
   LoginOutline,
   DeleteFill,
-  EditOutline
+  EditOutline,
+  MacCommandOutline,
+  TeamOutline,
+  ExportOutline,
+  FormatPainterOutline
 } from '@ant-design/icons-angular/icons';
 
 const icons = [
@@ -26,7 +30,11 @@ const icons = [
   FormOutline, 
   ContactsOutline,
   DeleteFill,
-  EditOutline
+  EditOutline,
+  MacCommandOutline,
+  TeamOutline,
+  ExportOutline,
+  FormatPainterOutline
 ];
 
 @NgModule({

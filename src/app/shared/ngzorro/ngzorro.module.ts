@@ -24,6 +24,12 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 import { NzSegmentedModule } from 'ng-zorro-antd/segmented';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 
 
@@ -56,7 +62,13 @@ import { NzSegmentedModule } from 'ng-zorro-antd/segmented';
     NzTabsModule,
     NzDatePickerModule,
     NzCalendarModule,
-    NzSegmentedModule
+    NzSegmentedModule,
+    NzAlertModule,
+    NzProgressModule,
+    NzToolTipModule,
+    NzBadgeModule,
+    NzListModule,
+    NzInputNumberModule
   ]
 })
 export class NgZorroModule { }

@@ -1,10 +1,10 @@
 <nz-row>
-    <nz-col nzSpan="5">
+    <nz-col nzSpan="6">
         <div [ngStyle]="{ border: '1px solid #d9d9d9', borderRadius: '4px' }">
             <nz-calendar [nzFullscreen]="false"></nz-calendar>
         </div>
     </nz-col>
-    <nz-col nzSpan="18" nzOffset="1">
+    <nz-col nzSpan="17" nzOffset="1">
         <nz-card class="card-calendar" nzTitle="Lịch làm việc" [nzExtra]="extraTemplate">
             <full-calendar [options]="calendarOptions" [deepChangeDetection]="true"></full-calendar>
         </nz-card>

@@ -7,6 +7,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { QuoteModule } from './quote/quote.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalendarModule } from './calendar/calendar.module';
+import { MatterModule } from './matter/matter.module';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { CalendarModule } from './calendar/calendar.module';
     AuthenticationModule,
     QuoteModule,
     CalendarModule,
+    MatterModule,
     SharedModule
   ],
 })

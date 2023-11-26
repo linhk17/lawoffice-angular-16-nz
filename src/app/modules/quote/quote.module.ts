@@ -8,8 +8,6 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { QuoteDetailComponent } from './quote-detail/quote-detail.component';
 import { QuoteEditComponent } from './quote-edit/quote-edit.component';
 import { CalendarModule } from '../calendar/calendar.module';
-import { ModalAddCalendarComponent } from '../calendar/modal-add-calendar/modal-add-calendar.component';
-
 
 
 @NgModule({

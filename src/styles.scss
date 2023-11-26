@@ -77,7 +77,13 @@ body {
     letter-spacing: 0;
 }
 
-
+.btn-success{
+    background-color: var(--cyan);
+    border: 0;
+    &:hover{
+        background-color: var(--cyan-hover);
+    }
+}
 .mat-mdc-menu-panel {
     margin-top: 22px;
     max-width: 300px !important;

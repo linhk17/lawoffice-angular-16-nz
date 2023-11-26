@@ -1,0 +1,120 @@
+<nz-card nzTitle="Vụ việc mới">
+    <form nz-form [formGroup]="matterForm" (ngSubmit)="onSubmit()">
+        <h3 style="font-weight: bold; margin-bottom: 20px;">Thông tin vụ việc</h3>
+        <nz-row>
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="title">Tên vụ việc</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Pleas input name matter">
+                        <input nz-input formControlName="ten_vu_viec" id="title" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="linh_vuc" nzRequired>Lĩnh vực</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please select your type!">
+                        <nz-select id="linh_vuc" formControlName="linh_vuc"
+                            nzPlaceHolder="Select a option and change input text above"
+                            (ngModelChange)="getService($event)">
+                            <nz-option *ngFor="let item of types" [nzValue]="item._id"
+                                [nzLabel]="item.ten_linh_vuc"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="dich_vu" nzRequired>Dịch vụ</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please select your service!">
+                        <nz-select id="dich_vu" formControlName="dich_vu"
+                            nzPlaceHolder="Select a option and change input text above">
+                            <nz-option *ngFor="let item of services" [nzValue]="item._id"
+                                [nzLabel]="item.ten_dv"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="khach_hang" nzRequired>Khách hàng</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please select your customer!">
+                        <nz-select id="khach_hang" formControlName="khach_hang"
+                            nzPlaceHolder="Select a option and change input text above">
+                            <nz-option *ngFor="let item of users" [nzValue]="item._id"
+                                [nzLabel]="item.ho_ten"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="luat_su" nzRequired>Luật sư</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please select your law!">
+                        <nz-select id="luat_su" formControlName="luat_su"
+                            nzPlaceHolder="Select a option and change input text above">
+                            <nz-option *ngFor="let item of employees" [nzValue]="item._id"
+                                [nzLabel]="item.ho_ten"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+        </nz-row>
+
+        <nz-divider></nz-divider>
+        <nz-row>
+            <nz-col nzSpan="12">
+                <h3 style="font-weight: bold; margin-bottom: 20px;">Thiết lập</h3>
+                <nz-form-item>
+                    <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="dktt" nzRequired>Điều khoản thanh toán</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please select your type!">
+                        <nz-select id="dktt" formControlName="dieu_khoan_thanh_toan"
+                            nzPlaceHolder="Select a option and change input text above">
+                            <nz-option *ngFor="let item of timePay" [nzValue]="item._id" [nzLabel]="item.ten == 0 ? 'Thanh toán ngay' 
+                                : item.ten == -1 ? 'Thanh toán sau khi kết thúc' :  item.ten + ' ngày'"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="title">Chiết khấu hoa hồng</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Pleas input name matter">
+                        <nz-input-number [nzMin]="1" [nzMax]="100" [nzStep]="1" 
+                        formControlName="chiet_khau_hoa_hong" [nzFormatter]="formatterPercent"
+                            [nzParser]="parserPercent"></nz-input-number>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="title">Chiết khấu hoa hồng</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Pleas input name matter">
+                        <nz-input-number-group nzAddOnAfter="VNĐ">
+                            <nz-input-number  [nzStep]="1"></nz-input-number>
+                          </nz-input-number-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <nz-col nzSpan="12">
+                <h3 style="font-weight: bold; margin-bottom: 20px; margin-left: 50px;">Truy cập</h3>
+
+                <nz-form-item>
+                    <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="khach_hang" nzRequired>Khách hàng</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please select your customer!">
+                        <nz-select id="khach_hang" nzMode="multiple" formControlName="khach_hang_access"
+                            nzPlaceHolder="Select a option and change input text above">
+                            <nz-option *ngFor="let item of users" [nzValue]="item._id"
+                                [nzLabel]="item.ho_ten"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="luat_su" nzRequired>Nhân viên</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please select your law!">
+                        <nz-select id="luat_su" nzMode="multiple" formControlName="luat_su_access"
+                            nzPlaceHolder="Select a option and change input text above">
+                            <nz-option *ngFor="let item of employees" [nzValue]="item._id"
+                                [nzLabel]="item.ho_ten"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+        </nz-row>
+        <nz-form-item nz-row class="register-area">
+            <nz-form-control [nzSpan]="4" [nzOffset]="19">
+                <button style="width: 100%;" class="btn-dark-blue" nz-button nzType="primary">Tạo vụ việc</button>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</nz-card>

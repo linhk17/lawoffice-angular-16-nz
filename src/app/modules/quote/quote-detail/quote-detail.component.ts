@@ -37,7 +37,6 @@ export class QuoteDetailComponent {
       setTimeout(() => {
         observer.next(true);
         observer.complete();
-
       }, 3000);
     });
   }

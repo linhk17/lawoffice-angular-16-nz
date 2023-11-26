@@ -27,4 +27,11 @@ export class UserService {
       environment['apiUrl'] + this.prefixApi + '/'
     )
   }
+
+  getByMatter(ids: string[]): Observable<User>{
+    return this.httpClient.post<User>(
+      environment['apiUrl'] + this.prefixApi + '/findByMatter',
+      ids
+    )
+  }
 }

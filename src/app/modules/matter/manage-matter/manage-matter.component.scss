@@ -1,0 +1,17 @@
+.icon-action{
+    font-size: 16px;
+    color: var(--red);
+    cursor: pointer;
+}
+.title-table{
+   th{
+    font-weight: bold;
+   }
+}
+
+.text-overflow{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: 0;
+}

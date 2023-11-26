@@ -1,0 +1,99 @@
+<nz-breadcrumb>
+    <nz-breadcrumb-item>Dashboard</nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+        <a>Manage Quote</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>Quote List</nz-breadcrumb-item>
+</nz-breadcrumb>
+<nz-space style="margin: 20px 0;">
+    <button [routerLink]="'/admin/manage-matter/add/'" *nzSpaceItem nz-button nzType="primary" class="btn-dark-blue">
+        <span nz-icon nzType="edit"></span>
+        Vụ việc mới
+    </button>
+    <button [routerLink]="'/admin/manage-quote/add/'" *nzSpaceItem nz-button nzType="primary" class="btn-success">
+        <span nz-icon nzType="download"></span>
+        Export Excel
+    </button>
+    <button [routerLink]="'/admin/manage-quote/add/'" *nzSpaceItem nz-button nzType="primary" nzDanger>
+        <span nz-icon nzType="download"></span>
+        Export PDF
+    </button>
+</nz-space>
+<nz-alert style="margin-bottom: 20px;" nzType="info"
+    nzMessage="Filtering 8 out of 8 items. Filter the next 0 items"></nz-alert>
+
+
+<nz-table [nzTotal]="50" #basicTable [nzData]="dataSource">
+    <thead>
+        <tr class="title-table">
+            <th>Tên vụ việc</th>
+            <th>Lĩnh vực</th>
+            <th>Dịch vụ</th>
+            <th>Luật sư phụ trách</th>
+            <th>Khách hàng</th>
+            <th>Số điện thoại</th>
+            <th>Trạng thái</th>
+            <th>Tiến độ</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of basicTable.data" [routerLink]='data._id'>
+            <td style="max-width: 200px;">
+                <p class="text-overflow" nz-tooltip [nzTooltipTitle]="data.ten_vu_viec" nzTooltipPlacement="bottomLeft"
+                    [nzTooltipArrowPointAtCenter]="true">
+                    {{ data.ten_vu_viec }}
+                </p>
+            </td>
+            <td style="max-width: 130px;">
+                <p class="text-overflow" nz-tooltip [nzTooltipTitle]="data.linh_vuc.ten_linh_vuc"
+                    nzTooltipPlacement="bottomLeft" [nzTooltipArrowPointAtCenter]="true">
+                    {{ data.linh_vuc.ten_linh_vuc }}
+                </p>
+            </td>
+            <td style="max-width: 130px;">
+                <p class="text-overflow" nz-tooltip [nzTooltipTitle]="data.dich_vu.ten_dv"
+                    nzTooltipPlacement="bottomLeft" [nzTooltipArrowPointAtCenter]="true">
+                    {{ data.dich_vu.ten_dv }}
+                </p>
+            </td>
+            <td>{{ data.luat_su.ho_ten}}</td>
+            <td>{{ data.khach_hang.ho_ten}}</td>
+            <td style="max-width: 80px;">
+                <p class="text-overflow" nz-tooltip [nzTooltipTitle]="data.khach_hang.account.sdt"
+                    nzTooltipPlacement="bottomLeft" [nzTooltipArrowPointAtCenter]="true">
+                    {{ data.khach_hang.account.sdt }}
+                </p>
+            </td>
+            <td style="max-width: 80px;">
+                <nz-tag [nzColor]="
+                    data.status == 1 ? 'success' : data.status == 0 ? 'processing'
+                    : 'warning'">
+                    {{
+                    data.status == 0 ? 'Processing'
+                    : data.status == 1 ? 'Success'
+                    : 'Pause'
+                    }}
+                </nz-tag>
+            </td>
+            <!-- <td style="max-width: 80px;">
+                <nz-tag [nzColor]="
+                    data.status_tt == 2 ? 'success' : data.status_tt == 1 ? 'processing'
+                    : 'warning'">
+                    {{
+                    data.status_tt == 2 ? 'Success' : data.status_tt == 1 ? 'Processing'
+                    : 'Pending'
+                    }}
+                </nz-tag>
+            </td> -->
+
+            <td>
+                <nz-progress *ngIf="data.status == 0; else success" [nzPercent]="data.process"
+                    nzSize="small"></nz-progress>
+                <ng-template #success>
+                    <nz-progress [nzPercent]="100" nzSize="small"></nz-progress>
+                </ng-template>
+
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
