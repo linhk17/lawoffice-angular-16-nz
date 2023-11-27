@@ -5,7 +5,7 @@
       Upload
     </button>
   </nz-upload> -->
-  <input *ngIf="edit" type="file" (change)="transformFile($event)"/>
+  <input *ngIf="edit" accept="application/pdf, application/msword,text/plain" type="file" (change)="transformFile($event)"/>
 <nz-table [nzTotal]="50" #basicTable [nzData]="documents">
     <thead>
         <tr class="title-table">

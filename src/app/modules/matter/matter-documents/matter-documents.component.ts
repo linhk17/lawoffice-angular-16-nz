@@ -13,30 +13,32 @@ export class MatterDocumentsComponent {
   @Output() uploadFile = new EventEmitter();
   // docs: any = [];
   file: any;
-  constructor() {
-  }
+  constructor() {}
   ngOnInit() {
-    this.documents ? this.documents = this.documents : this.documents = []
+    this.documents ? (this.documents = this.documents) : (this.documents = []);
   }
   transformFile(e: any) {
     let selected = e.target.files[0];
-    let reader = new FileReader();
-    reader.readAsDataURL(selected);
-    reader.onload = (e: any) => {
-      console.log(e, selected);
-      this.documents.push({
-        key: this.documents ? this.documents.length : 0,
-        lastModified: selected.lastModified,
-        lastModifiedDate: selected.lastModifiedDate,
-        name: selected.name,
-        size: selected.size,
-        type: selected.type,
-        file: e.target.result
-      })
-      this.uploadFile.emit({
-        tai_lieu: this.documents
-      })
-    };
+    if (selected.size > 50000) {
+      alert('Kích thước file vượt quá mức quy định, vui lòng chọn file dưới 50KB');
+    } else {
+      let reader = new FileReader();
+      reader.readAsDataURL(selected);
+      reader.onload = (e: any) => {
+        this.documents.push({
+          key: this.documents ? this.documents.length : 0,
+          lastModified: selected.lastModified,
+          lastModifiedDate: selected.lastModifiedDate,
+          name: selected.name,
+          size: selected.size,
+          type: selected.type,
+          file: e.target.result,
+        });
+        this.uploadFile.emit({
+          tai_lieu: this.documents,
+        });
+      };
+    }
   }
   handleFile(file: File, name: string) {
     let a = document.createElement('a');
