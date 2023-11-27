@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import {
+  AbstractControl,
   FormControl,
   FormGroup,
   NonNullableFormBuilder,
+  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { ProvinceService } from 'src/app/services/province.service';
@@ -12,6 +14,7 @@ import { District, Province } from 'src/app/shared/models/province.interface';
 import { TypeService } from 'src/app/shared/models/type-service.interface';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { countries } from 'src/app/shared/utils/country-phone-code';
+import { PhoneNumberUtil, PhoneNumber } from 'google-libphonenumber';
 @Component({
   selector: 'app-request-quote',
   templateUrl: './request-quote.component.html',
@@ -28,13 +31,12 @@ export class RequestQuoteComponent {
     type: FormControl<string>;
     problem: FormControl<string>;
     province: FormControl<string>;
-
-  
   }>;
 
   provinces: Province[] = [];
   districts?: District[];
   types: TypeService[] = [];
+  phoneNumberUtil = PhoneNumberUtil.getInstance();
 
   constructor(
     private fb: NonNullableFormBuilder,
@@ -46,7 +48,7 @@ export class RequestQuoteComponent {
     this.requestForm = this.fb.group({
       email: ['', [Validators.email, Validators.required]],
       fullName: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
+      phone: ['', [Validators.required, this.PhoneNumberValidator('VN')]],
       province: ['', [Validators.required]],
       problem: ['', [Validators.required]],
       type: ['', [Validators.required]],
@@ -73,9 +75,23 @@ export class RequestQuoteComponent {
       })
     })
   }
+  PhoneNumberValidator(regionCode: string): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } => {
+      let validNumber = false;
+      try {
+        const phoneNumber = this.phoneNumberUtil.parseAndKeepRawInput(
+          control.value, regionCode
+        );
+        validNumber = this.phoneNumberUtil.isValidNumber(phoneNumber);
+      } catch (e) { }
+  
+      return validNumber ? [] : { 'wrongNumber': { value: control.value } };
+    }
+  }
   createMessage(type: string, mess: string): void {
     this.message.create(type, mess);
   }
+
   setProvince(target: any){
     this.provinceService.getDistricts('2')
     .subscribe((res: Province) => {
