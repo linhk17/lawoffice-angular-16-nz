@@ -57,11 +57,11 @@
     <nz-descriptions-item nzTitle="Dịch vụ">{{quote?.dich_vu?.ten_dv}}</nz-descriptions-item>
     <nz-descriptions-item nzTitle="Điều khoản thanh toán">{{quote?.dieu_khoan_thanh_toan}}
       ngày</nz-descriptions-item>
-    <nz-descriptions-item nzTitle="Tổng giá dự kiến">{{quote?.tong_gia_du_kien | currency : 'VND' : 'code' }}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Tổng giá dự kiến">{{quote?.tong_gia_du_kien | currencyFormatPipe}}</nz-descriptions-item>
     <nz-descriptions-item nzTitle="Ghi chú (nếu có)">{{quote?.ghi_chu}}</nz-descriptions-item>
   </nz-descriptions>
   <nz-divider></nz-divider>
-  <span nz-typography nzType="secondary">{{quote?.ngay_gui_phieu | date: 'dd/MM/yyyy, h:mm a'}}</span>
+  <span nz-typography nzType="secondary">{{quote?.ngay_gui_phieu | dateFormatPipe}}</span>
 </nz-card>
 
 <app-modal-add-calendar (isCloseModal)="isShowModal = false" [isVisible]="isShowModal" [data]="quote"></app-modal-add-calendar>

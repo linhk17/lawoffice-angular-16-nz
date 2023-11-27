@@ -23,7 +23,7 @@
                 <nz-form-item>
                     <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="dich_vu" nzRequired>Dịch vụ</nz-form-label>
                     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please select your service!">
-                        <nz-select id="dich_vu" formControlName="dich_vu"
+                        <nz-select (ngModelChange)="setPrice($event)" id="dich_vu" formControlName="dich_vu"
                             nzPlaceHolder="Select a option and change input text above">
                             <nz-option *ngFor="let item of services" [nzValue]="item._id"
                                 [nzLabel]="item.ten_dv"></nz-option>
@@ -72,17 +72,17 @@
                 <nz-form-item>
                     <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="title">Chiết khấu hoa hồng</nz-form-label>
                     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Pleas input name matter">
-                        <nz-input-number [nzMin]="1" [nzMax]="100" [nzStep]="1" 
-                        formControlName="chiet_khau_hoa_hong" [nzFormatter]="formatterPercent"
-                            [nzParser]="parserPercent"></nz-input-number>
+                        <nz-input-number [nzMin]="1" [nzMax]="100" [nzStep]="1" formControlName="chiet_khau_hoa_hong"
+                            [nzFormatter]="formatterPercent" [nzParser]="parserPercent"></nz-input-number>
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>
                     <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired nzFor="title">Tổng tiền</nz-form-label>
                     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Pleas input name matter">
-                        <nz-input-number-group nzAddOnAfter="VNĐ" formControlName="tong_tien">
-                            <nz-input-number  [nzStep]="1"></nz-input-number>
-                          </nz-input-number-group>
+                        <nz-input-number-group nzAddOnAfter="VNĐ">
+                            <nz-input-number [nzFormatter]="formaterPrice" [nzParser]="parsePrice"
+                                formControlName="tong_tien" [nzStep]="1"></nz-input-number>
+                        </nz-input-number-group>
                     </nz-form-control>
                 </nz-form-item>
             </nz-col>

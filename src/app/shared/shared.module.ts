@@ -4,13 +4,15 @@ import { InputSearchComponent } from './component/input-search/input-search.comp
 import { NgZorroModule } from './ngzorro/ngzorro.module';
 import { IconsProviderModule } from './ngzorro/icons-provider.module';
 import { MessageComponent } from './component/message/message.component';
-
-
+import { dateFormatPipe } from './pipe/date.pipe';
+import { CurrencyFormatPipe } from './pipe/currency.pipe';
 
 @NgModule({
   declarations: [
     InputSearchComponent,
-    MessageComponent
+    MessageComponent,
+    dateFormatPipe,
+    CurrencyFormatPipe
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,10 @@ import { MessageComponent } from './component/message/message.component';
   exports: [
     NgZorroModule,
     IconsProviderModule,
-    InputSearchComponent
-  ]
+    InputSearchComponent,
+    dateFormatPipe,
+    CurrencyFormatPipe
+  ],
+  providers: [CurrencyFormatPipe]
 })
 export class SharedModule { }

@@ -29,7 +29,7 @@
             <nz-descriptions-item nzTitle="Tên vụ việc">{{matter?.ten_vu_viec}}</nz-descriptions-item>
             <nz-descriptions-item nzTitle="Lĩnh vực">{{matter?.linh_vuc?.ten_linh_vuc}}</nz-descriptions-item>
             <nz-descriptions-item nzTitle="Dịch vụ">{{matter?.dich_vu?.ten_dv}}</nz-descriptions-item>
-            <nz-descriptions-item nzTitle="Ngày lập">{{matter?.ngay_lap | date: 'dd/MM/yyyy, h:mm a'}}
+            <nz-descriptions-item nzTitle="Ngày lập">{{matter?.ngay_lap | dateFormatPipe}}
             </nz-descriptions-item>
         </nz-descriptions>
         <nz-divider></nz-divider>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {
+  AbstractControl,
   FormControl,
   FormGroup,
   NonNullableFormBuilder,
@@ -13,6 +14,7 @@ import { ServiceService } from 'src/app/services/service.service';
 import { TimePayService } from 'src/app/services/time-pay.service';
 import { TypeServiceService } from 'src/app/services/type-service.service';
 import { UserService } from 'src/app/services/user.service';
+import { CurrencyFormatPipe } from 'src/app/shared/pipe/currency.pipe';
 
 @Component({
   selector: 'app-matter-form',
@@ -26,9 +28,12 @@ export class MatterFormComponent {
   users: any = [];
   employees: any = [];
   timePay: any = [];
+  priceTotal: string | null = '';
 
   formatterPercent = (value: number): string => `${value} %`;
   parserPercent = (value: string): string => value.replace(' %', '');
+  formaterPrice = (value: string | number): string => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  parsePrice = (value: string): string => value.replace(/\$\s?|(,*)/g, '');
 
   matterForm: FormGroup<{
     ten_vu_viec: FormControl<string>;
@@ -51,7 +56,7 @@ export class MatterFormComponent {
     private matterService: MatterService,
     private fb: NonNullableFormBuilder,
     private nzMessageService: NzMessageService,
-    private router: Router
+    private router: Router,
 
   ) {
     this.matterForm = this.fb.group({
@@ -111,7 +116,11 @@ export class MatterFormComponent {
   }
   setPrice(id: any) {
     const s = this.services.filter((item: any) => item._id == id);
-    // this.updateForm.controls['tong_gia_du_kien'].setValue(s[0].don_gia_dv)
+    this.matterForm.controls['tong_tien'].setValue(s[0].don_gia_dv)
+  }
+
+  get formControl(): { [key: string]: AbstractControl } {
+    return this.matterForm.controls;
   }
 
   onSubmit() {

@@ -29,7 +29,7 @@ registerLocaleData(localeDe, 'de-DE', localeDeExtra);
     BrowserAnimationsModule,
     SharedModule,
     LayoutsModule,
-    ModulesModule,
+    ModulesModule
   ],
 
   providers: [

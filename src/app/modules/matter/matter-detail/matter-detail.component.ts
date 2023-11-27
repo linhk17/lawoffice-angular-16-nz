@@ -4,7 +4,6 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { MatterService } from 'src/app/services/matter.service';
 import { UserService } from 'src/app/services/user.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
-
 @Component({
   selector: 'app-matter-detail',
   templateUrl: './matter-detail.component.html',
