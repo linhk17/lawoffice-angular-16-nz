@@ -8,6 +8,7 @@ import { QuoteModule } from './quote/quote.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalendarModule } from './calendar/calendar.module';
 import { MatterModule } from './matter/matter.module';
+import { TaskModule } from './task/task.module';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { MatterModule } from './matter/matter.module';
     QuoteModule,
     CalendarModule,
     MatterModule,
+    TaskModule,
     SharedModule
   ],
 })

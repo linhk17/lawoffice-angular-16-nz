@@ -86,7 +86,8 @@ export class ModalAddCalendarComponent {
       .getAllUser()
       .pipe()
       .subscribe((res: any) => {
-        this.users = res.filter((item: any) => item.bo_phan._id == id);
+        this.users = res.filter((item: any) => 
+        item.bo_phan?._id == id && item.account.quyen != 0);
       });
   }
   getUser() {

@@ -1,28 +1,30 @@
 <div nz-row style="margin-bottom: 20px;">
-    <div nz-col nzSpan="8">
+    <div nz-col nzSpan="4">
         <nz-space>
-            <button routerLink="edit" *nzSpaceItem nz-button nzType="primary"
-                class="btn-dark-blue">
+            <button (click)="edit = true" *nzSpaceItem routerLink="edit" nz-button nzType="primary" class="btn-dark-blue">
                 <span nz-icon nzType="form"></span>
                 Hoá đơn mới
             </button>
-            <button routerLink="edit" *nzSpaceItem nz-button nzType="primary"
-                class="btn-dark-blue">
-                <span nz-icon nzType="edit"></span>
-                Chỉnh sửa
-            </button>
+            <ng-container *ngIf="matter?.status == 0">
+                <button nz-button *nzSpaceItem nzType="primary" class="btn-dark-blue" 
+                (click)="showConfirm('Hoàn thành vụ việc?', 1)">Hoàn
+                    thành</button>
+                <button *nzSpaceItem nz-button nzType="default"
+                    (click)="showDeleteConfirm()">Tạm ngưng</button>
+            </ng-container>
+            <ng-container *ngIf="matter?.status == 2">
+                <button (click)="showConfirm('Tiếp tục thực hiện vụ việc này', 0)" *nzSpaceItem nz-button  nzType="default">Tiếp
+                    tục</button>
+            </ng-container>
+
         </nz-space>
     </div>
-    <div nz-col nzSpan="10" nzOffset="6">
-        <!-- <nz-steps [nzCurrent]="quote?.status">
-        <nz-step nzTitle="Pending"></nz-step>
-        <nz-step nzTitle="In Progress"></nz-step>
-        <nz-step nzTitle="Success"></nz-step>
-      </nz-steps> -->
+    <div nz-col nzSpan="5" nzOffset="15">
+
     </div>
 </div>
 <nz-ribbon nzText="Chưa thanh toán">
-    <nz-card [nzTitle]="action" nzSize="default">
+    <nz-card nzTitle="" nzSize="default">
         <nz-descriptions nzTitle="Thông tin vụ việc" [nzColumn]="2">
             <nz-descriptions-item nzTitle="Tên vụ việc">{{matter?.ten_vu_viec}}</nz-descriptions-item>
             <nz-descriptions-item nzTitle="Lĩnh vực">{{matter?.linh_vuc?.ten_linh_vuc}}</nz-descriptions-item>
@@ -83,28 +85,36 @@
                 </nz-row>
             </nz-tab>
             <nz-tab nzTitle="Tài liệu">
-                <app-matter-documents 
-                [documents]="matter?.tai_lieu ? matter.tai_lieu : []"
-                (uploadFile)="updateMatter($event)"></app-matter-documents>
+                <app-matter-documents [edit]="edit" [documents]="matter?.tai_lieu ? matter.tai_lieu : []"
+                    (uploadFile)="updateMatter($event)"></app-matter-documents>
             </nz-tab>
             <nz-tab nzTitle="Liên hệ">
-                <app-matter-contacts [contacts]="matter?.lien_he"></app-matter-contacts>
-             </nz-tab>
+                <app-matter-contacts [edit]="edit" (updateContact)="updateMatter($event)"
+                    [contacts]="matter?.lien_he ? matter.lien_he : []"></app-matter-contacts>
+            </nz-tab>
             <nz-tab nzTitle="Công việc">
-                <app-matter-tasks [tasks]="matter?.cong_viec"></app-matter-tasks>
+                <ng-container *ngIf="matter">
+                    <app-matter-tasks [edit]="edit" [id]="matter?._id" [access]="matter?.truy_cap.nhan_vien 
+                ? matter?.truy_cap.nhan_vien : []"></app-matter-tasks>
+                </ng-container>
+
             </nz-tab>
             <nz-tab nzTitle="Quy trình thực hiện">
-                <app-matter-steps [steps]="matter?.quy_trinh"></app-matter-steps>
+                <ng-container *ngIf="matter">
+                    <app-matter-steps [edit]="edit" (updatePeriod)="updateMatter($event)"
+                        [steps]="matter?.quy_trinh ? matter?.quy_trinh : []"
+                        [service]="matter?.dich_vu._id"></app-matter-steps>
+                </ng-container>
             </nz-tab>
             <nz-tab nzTitle="Chi phí phát sinh">Content of </nz-tab>
             <nz-tab nzTitle="Hoá đơn khách hàng">Content of </nz-tab>
         </nz-tabset>
     </nz-card>
-    <ng-template #action>
-        <nz-steps [nzCurrent]="0" style="width: 50%;">
+    <!-- <ng-template #action>
+        <nz-steps [nzCurrent]="matter?.status" style="width: 50%;">
             <nz-step nzTitle="Pending"></nz-step>
             <nz-step nzTitle="In Progress"></nz-step>
             <nz-step nzTitle="Success"></nz-step>
         </nz-steps>
-    </ng-template>
+    </ng-template> -->
 </nz-ribbon>

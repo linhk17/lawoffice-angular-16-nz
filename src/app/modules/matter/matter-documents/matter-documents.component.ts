@@ -9,7 +9,7 @@ import { Observable, Observer } from 'rxjs';
 })
 export class MatterDocumentsComponent {
   @Input() documents: any[] = [];
-  @Input() isEdit: boolean = false;
+  @Input() edit: boolean = false;
   @Output() uploadFile = new EventEmitter();
   // docs: any = [];
   file: any;

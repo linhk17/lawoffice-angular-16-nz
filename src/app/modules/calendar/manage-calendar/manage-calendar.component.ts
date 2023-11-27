@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CalendarOptions } from '@fullcalendar/core';
+import { Component, ViewChild } from '@angular/core';
+import { Calendar, CalendarOptions } from '@fullcalendar/core';
 import { TimeAppointment } from 'src/app/shared/models/time-appointment.interface';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -7,6 +7,7 @@ import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 import { TimeAppointmentService } from 'src/app/services/time-appointment.service';
 import { QuoteService } from 'src/app/services/quote.service';
+import { FullCalendarComponent } from '@fullcalendar/angular';
 @Component({
   selector: 'app-manage-calendar',
   templateUrl: './manage-calendar.component.html',
@@ -16,6 +17,8 @@ export class ManageCalendarComponent {
   Events: any[] = [];
   timeAppointments: TimeAppointment[] = [];
   data: any;
+  date: any = new Date();
+  // calendar?: Calendar;
   showModal: boolean = false;
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin],
@@ -31,6 +34,8 @@ export class ManageCalendarComponent {
     selectMirror: true,
     dayMaxEvents: true,
   };
+  
+  @ViewChild('calendar') calendarComponent!: FullCalendarComponent;
   constructor(
     private timeService: TimeAppointmentService,
     private quoteService: QuoteService
@@ -54,11 +59,12 @@ export class ManageCalendarComponent {
         );
       });
     setTimeout(() => {
-    this.calendarOptions = {
-      initialView: 'dayGridMonth',
-      events: this.Events,
-      eventClick: this.getEvent.bind(this),
-    };
+      this.calendarOptions = {
+        initialView: 'dayGridMonth',
+        events: this.Events,
+        eventClick: this.getEvent.bind(this),
+        initialDate: this.date,
+      };
     }, 100);
   }
   getEvent(info: any) {
@@ -73,9 +79,14 @@ export class ManageCalendarComponent {
             this.showModal = true;
             this.data = {
               ...res,
-              ...time
+              ...time,
             };
           });
       });
+  }
+  onValueChange(event: any) {
+    this.date = event;
+    let calendarApi = this.calendarComponent.getApi();
+    calendarApi.gotoDate(this.date)
   }
 }

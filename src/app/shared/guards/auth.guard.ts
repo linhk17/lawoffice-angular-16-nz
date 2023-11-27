@@ -15,7 +15,7 @@ export class AuthGuard {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | UrlTree | boolean {
-    const user = this.auth.getUser();
+    const user = this.auth.isLoggedIn() ? this.auth.getUser() : '';
     if (!this.auth.isLoggedIn()) {
       window.alert('Access Denied, Login is Required to Access This Page!');
       this.router.navigate(['login']);

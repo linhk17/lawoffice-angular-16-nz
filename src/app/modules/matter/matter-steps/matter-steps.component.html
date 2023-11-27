@@ -1,3 +1,5 @@
+<button *ngIf="edit" nz-button [nzType]="'primary'" class="btn-dark-blue" (click)="showModal()"><span>Thêm mới</span></button>
+
 <nz-table [nzTotal]="50" #basicTable [nzData]="steps">
     <thead>
         <tr class="title-table">
@@ -8,16 +10,57 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let data of basicTable.data">
+        <tr *ngFor="let data of basicTable.data;">
             <td>{{data.ten_qt}}</td>
             <td>{{data.mo_ta}}</td>
             <td>
                 <nz-tag [nzColor]="
                 data.status == 1 ? 'success' : 'processing'">
-                {{
-                data.status == 0 ? 'Đang thực hiện' : 'Hoàn thành'
-                }}
-            </nz-tag></td>
+                    {{
+                    data.status == 0 ? 'Đang thực hiện' : 'Hoàn thành'
+                    }}
+                </nz-tag>
+            </td>
+            <td *ngIf="edit">
+                <button (click)="updateStatus(1, data)" *ngIf="data.status == 0; else again" nz-button nzType="default">
+                    <span nz-icon nzType="check-circle" nzTheme="outline"></span>
+                    Hoàn thành
+                </button>
+                <ng-template #again>
+                    <button (click)="updateStatus(0, data)" nz-button nzType="default">
+                        <span nz-icon nzType="check-circle" nzTheme="outline"></span>
+                        Thực hiện lại
+                    </button>
+                </ng-template>
+            </td>
         </tr>
     </tbody>
 </nz-table>
+
+<nz-modal nzWidth="600px" [(nzVisible)]="isVisible" nzTitle="Công việc mới" (nzOnCancel)="handleCancel()">
+    <ng-container *nzModalContent>
+        <form nz-form [formGroup]="stepsForm">
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="mqh" nzRequired>Quy trình</nz-form-label>
+                <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="Please select your employees !">
+                    <nz-select id="mqh" formControlName="ten_qt"
+                        nzPlaceHolder="Select a option and change input text above">
+                        <nz-option *ngFor="let item of step" [nzValue]="item.ten_qt"
+                            [nzLabel]="item.ten_qt"></nz-option>
+                    </nz-select>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="mo_ta">Mô tả</nz-form-label>
+                <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="Please input note">
+                    <textarea nz-input formControlName="mo_ta" id="mo_ta" rows="3"
+                        placeholder="Write any thing"></textarea>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+    </ng-container>
+    <div *nzModalFooter>
+        <button nz-button nzType="default" (click)="handleCancel()">Huỷ</button>
+        <button nz-button nzType="primary" (click)="submitForm()">Thêm mới</button>
+    </div>
+</nz-modal>

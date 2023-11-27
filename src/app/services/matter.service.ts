@@ -33,10 +33,13 @@ export class MatterService {
     )
   }
   public update(id: string, data: any): Observable<any>{
-    console.log(id, data);
-    
     return this.httpClient.put<any>(
       environment['apiUrl'] + this.prefixApi + '/' + id, data
+    )
+  }
+  public setStatusTask(id: string, data: any): Observable<any>{
+    return this.httpClient.patch<any>(
+      environment['apiUrl'] + this.prefixApi + '/setStatus/' + id, data
     )
   }
 }

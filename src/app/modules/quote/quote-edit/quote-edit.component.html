@@ -8,7 +8,7 @@
             {{quote?.van_de}}
         </nz-descriptions-item>
     </nz-descriptions>
-    <span nz-typography nzType="secondary">{{quote?.ngay_gui_phieu}}</span>
+    <span nz-typography nzType="secondary">{{quote?.ngay_gui_phieu | date: 'dd/MM/yyyy, h:mm a'}}</span>
     <nz-divider></nz-divider>
     <form nz-form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
         <div nz-row>

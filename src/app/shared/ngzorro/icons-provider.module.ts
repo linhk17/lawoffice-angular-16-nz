@@ -16,7 +16,8 @@ import {
   MacCommandOutline,
   TeamOutline,
   ExportOutline,
-  FormatPainterOutline
+  FormatPainterOutline,
+  CheckCircleOutline
 } from '@ant-design/icons-angular/icons';
 
 const icons = [
@@ -34,7 +35,8 @@ const icons = [
   MacCommandOutline,
   TeamOutline,
   ExportOutline,
-  FormatPainterOutline
+  FormatPainterOutline,
+  CheckCircleOutline
 ];
 
 @NgModule({

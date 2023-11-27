@@ -89,7 +89,7 @@
             </td> -->
 
             <td>
-                <nz-progress *ngIf="data.status == 0; else success" [nzPercent]="data.process"
+                <nz-progress *ngIf="data.status == 0 || data.status == 2; else success" [nzPercent]="data.process"
                     nzSize="small"></nz-progress>
                 <ng-template #success>
                     <nz-progress [nzPercent]="100" nzSize="small"></nz-progress>

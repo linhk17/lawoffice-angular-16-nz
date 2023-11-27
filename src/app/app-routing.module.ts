@@ -14,44 +14,45 @@ import { ManageCalendarComponent } from './modules/calendar/manage-calendar/mana
 import { ManageMatterComponent } from './modules/matter/manage-matter/manage-matter.component';
 import { MatterDetailComponent } from './modules/matter/matter-detail/matter-detail.component';
 import { MatterFormComponent } from './modules/matter/matter-form/matter-form.component';
+import { ManageTaskComponent } from './modules/task/manage-task/manage-task.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
   {
-    path: "redirect",
+    path: 'redirect',
     component: MainLayoutComponent,
-    canActivate: [RedirectGuard]
+    canActivate: [RedirectGuard],
   },
-  
+
   {
-    path: "",
+    path: '',
     component: MainLayoutComponent,
     children: [
       {
-        path: "home",
-        component: HomeComponent
+        path: 'home',
+        component: HomeComponent,
       },
       {
-        path: "login",
-        component: LoginComponent
+        path: 'login',
+        component: LoginComponent,
       },
       {
-        path: "request-quote",
-        component: RequestQuoteComponent
+        path: 'request-quote',
+        component: RequestQuoteComponent,
       },
-    ]
+    ],
   },
   {
-    path: "admin",
+    path: 'admin',
     canActivate: [AuthGuard],
     component: ManageLayoutComponent,
-    data: { 
-      expectedRole: 1
+    data: {
+      expectedRole: 1,
     },
     children: [
       {
         path: 'manage-matter',
-        
+
         children: [
           {
             path: '',
@@ -59,32 +60,32 @@ const routes: Routes = [
           },
           {
             path: 'add',
-            component: MatterFormComponent
+            component: MatterFormComponent,
           },
           {
             path: ':id',
-            component: MatterDetailComponent
+            component: MatterDetailComponent,
           },
-          
+
           {
             path: 'edit/:id',
-            component: QuoteEditComponent
+            component: QuoteEditComponent,
           },
-        ]
+        ],
       },
       {
         path: 'manage-calendar',
-        
+
         children: [
           {
             path: '',
             component: ManageCalendarComponent,
           },
-        ]
+        ],
       },
       {
         path: 'manage-quote',
-        
+
         children: [
           {
             path: '',
@@ -92,28 +93,27 @@ const routes: Routes = [
           },
           {
             path: ':id',
-            component: QuoteDetailComponent
+            component: QuoteDetailComponent,
           },
           {
             path: 'edit/:id',
-            component: QuoteEditComponent
+            component: QuoteEditComponent,
           },
-        ]
+        ],
       },
-      
-    ]
+    ],
   },
   {
-    path: "counselor",
+    path: 'counselor',
     canActivate: [AuthGuard],
     component: ManageLayoutComponent,
-    data: { 
-      expectedRole: 3
+    data: {
+      expectedRole: 3,
     },
     children: [
       {
         path: 'manage-quote',
-        
+
         children: [
           {
             path: '',
@@ -121,38 +121,47 @@ const routes: Routes = [
           },
           {
             path: ':id',
-            component: QuoteDetailComponent
+            component: QuoteDetailComponent,
           },
           {
             path: 'edit/:id',
-            component: QuoteEditComponent
+            component: QuoteEditComponent,
           },
-        ]
+        ],
       },
       {
         path: 'manage-calendar',
-        
+
         children: [
           {
             path: '',
             component: ManageCalendarComponent,
           },
-        ]
+        ],
       },
-      
-    ]
+      {
+        path: 'manage-task',
+
+        children: [
+          {
+            path: '',
+            component: ManageTaskComponent,
+          },
+        ],
+      },
+    ],
   },
   {
-    path: "law",
+    path: 'law',
     canActivate: [AuthGuard],
     component: ManageLayoutComponent,
-    data: { 
-      expectedRole: 2
+    data: {
+      expectedRole: 2,
     },
     children: [
       {
         path: 'manage-matter',
-        
+
         children: [
           {
             path: '',
@@ -160,32 +169,32 @@ const routes: Routes = [
           },
           {
             path: 'add',
-            component: MatterFormComponent
+            component: MatterFormComponent,
           },
           {
             path: ':id',
-            component: MatterDetailComponent
+            component: MatterDetailComponent,
           },
-          
+
           {
             path: ':id/edit',
-            component: MatterDetailComponent
+            component: MatterDetailComponent,
           },
-        ]
+        ],
       },
       {
         path: 'manage-calendar',
-        
+
         children: [
           {
             path: '',
             component: ManageCalendarComponent,
           },
-        ]
+        ],
       },
       {
         path: 'manage-quote',
-        
+
         children: [
           {
             path: '',
@@ -193,21 +202,20 @@ const routes: Routes = [
           },
           {
             path: ':id',
-            component: QuoteDetailComponent
+            component: QuoteDetailComponent,
           },
           {
             path: 'edit/:id',
-            component: QuoteEditComponent
+            component: QuoteEditComponent,
           },
-        ]
+        ],
       },
-      
-    ]
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

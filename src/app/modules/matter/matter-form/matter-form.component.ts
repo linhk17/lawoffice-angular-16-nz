@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Route, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { Subscription } from 'rxjs';
 import { MatterService } from 'src/app/services/matter.service';
 import { ServiceService } from 'src/app/services/service.service';
 import { TimePayService } from 'src/app/services/time-pay.service';
@@ -19,6 +20,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./matter-form.component.scss'],
 })
 export class MatterFormComponent {
+  subscriptions: Subscription = new Subscription();
   types: any = [];
   services: any = [];
   users: any = [];
@@ -73,24 +75,30 @@ export class MatterFormComponent {
   }
 
   getType() {
-    this.typeServiceService
+    this.subscriptions.add(
+       this.typeServiceService
       .getAllType()
-      .pipe()
       .subscribe((res) => {
         this.types = res;
-      });
+      })
+    )
+   
   }
   getTimePay() {
-    this.timePayService
+    this.subscriptions.add(
+      this.timePayService
       .getAll()
-      .pipe()
-      .subscribe((res) => (this.timePay = res));
+      .subscribe((res) => (this.timePay = res))
+      )
+    
   }
   getService(id: any) {
-    this.serviceService
+    this.subscriptions.add(
+      this.serviceService
       .getByType(id)
       .pipe()
-      .subscribe((res) => (this.services = res));
+      .subscribe((res) => (this.services = res))
+    )
   }
   getAllUser() {
     this.userService
@@ -128,5 +136,8 @@ export class MatterFormComponent {
         }
       });
     }
+  }
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }

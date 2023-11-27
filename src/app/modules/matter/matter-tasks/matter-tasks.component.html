@@ -1,3 +1,5 @@
+<button *ngIf="edit" nz-button [nzType]="'primary'" class="btn-dark-blue" (click)="showModal()"><span>Thêm mới</span></button>
+
 <nz-table [nzTotal]="50" #basicTable [nzData]="tasks">
     <thead>
         <tr class="title-table">
@@ -21,13 +23,63 @@
                 : data.status == 0 ? 'processing' 
                 : data.status == 1 ? 'magenta'
                 : 'warning'">
-                {{
-                data.status == 0 ? 'Đã giao'
-                : data.status == 1 ? 'Đã trình'
-                : data.status == 2 ? 'Hoàn thành'
-                : 'Tạm ngưng'
-                }}
-            </nz-tag></td>
+                    {{
+                    data.status == 0 ? 'Đã giao'
+                    : data.status == 1 ? 'Đã trình'
+                    : data.status == 2 ? 'Hoàn thành'
+                    : 'Tạm ngưng'
+                    }}
+                </nz-tag>
+            </td>
         </tr>
     </tbody>
 </nz-table>
+
+<nz-modal nzWidth="600px" [(nzVisible)]="isVisible" nzTitle="Công việc mới" (nzOnCancel)="handleCancel()">
+    <ng-container *nzModalContent>
+        <form nz-form [formGroup]="taskForm">
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="ten_cong_viec">Tên công việc</nz-form-label>
+                <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="Please input task name">
+                    <input nz-input formControlName="ten_cong_viec" id="ten_cong_viec" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="mqh" nzRequired>Phụ trách</nz-form-label>
+                <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="Please select your employees !">
+                    <nz-select id="mqh" formControlName="nguoi_phu_trach"
+                        nzPlaceHolder="Select a option and change input text above">
+                        <nz-option *ngFor="let item of userAccess" [nzValue]="item._id"
+                            [nzLabel]="item.ho_ten"></nz-option>
+                    </nz-select>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="han_chot_cong_viec">Hạn cuối</nz-form-label>
+                <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="Please input full name">
+                    <nz-date-picker style="width: 100%;" nzPlaceHolder="Deadline" formControlName="han_chot_cong_viec"
+                        [nzDisabledDate]="disabledDate" nzShowTime nzFormat="yyyy-MM-dd HH:mm"
+                        [nzShowTime]="{ nzFormat: 'HH:mm' }"></nz-date-picker>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="mo_ta_cong_viec">Mô tả</nz-form-label>
+                <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="Please input note">
+                    <textarea nz-input formControlName="mo_ta_cong_viec" id="mo_ta_cong_viec" rows="3"
+                        placeholder="Write any thing"></textarea>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="yeu_cau_cong_viec">Yêu cầu</nz-form-label>
+                <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="Please input note">
+                    <textarea nz-input formControlName="yeu_cau_cong_viec" id="yeu_cau_cong_viec" rows="3"
+                        placeholder="Write any thing"></textarea>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+    </ng-container>
+    <div *nzModalFooter>
+      <button nz-button nzType="default" (click)="handleCancel()">Huỷ</button>
+      <button nz-button nzType="primary" (click)="submitForm()">Thêm mới</button>
+    </div>
+</nz-modal>
