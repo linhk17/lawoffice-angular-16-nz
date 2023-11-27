@@ -1,0 +1,55 @@
+<nz-card nzTitle="Thông tin cá nhân">
+    <form nz-form [formGroup]="profileForm" (ngSubmit)="submitForm()">
+        <nz-row>
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="ho_ten">Họ tên</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                        <input nz-input formControlName="ho_ten" id="ho_ten" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="ngay_sinh">Ngày sinh</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                        <input nz-input formControlName="ngay_sinh" id="ngay_sinh" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">Email</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                        <input nz-input formControlName="email" id="email" />
+                        <div class="text-error" *ngIf="submitted && formControl['email'].errors">
+                            {{getErrorMessage(formControl['email'], 'email')}}
+                        </div>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+            <nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="dia_chi">Địa chỉ</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                        <input nz-input formControlName="dia_chi" id="dia_chi" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="position">Chức vụ</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                        <input nz-input formControlName="position" id="position" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="part">Bộ phận</nz-form-label>
+                    <nz-form-control [nzSm]="14" [nzXs]="24">
+                        <input nz-input formControlName="part" id="part" />
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-col>
+        </nz-row>
+
+        <nz-form-item nz-row class="register-area">
+            <nz-form-control [nzSpan]="7" [nzOffset]="15">
+                <button style="width: 100%;" class="btn-dark-blue" nz-button nzType="primary">Lưu chỉnh sửa</button>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</nz-card>

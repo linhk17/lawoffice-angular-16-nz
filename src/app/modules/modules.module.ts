@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalendarModule } from './calendar/calendar.module';
 import { MatterModule } from './matter/matter.module';
 import { TaskModule } from './task/task.module';
+import { ProfileModule } from './profile/profile.module';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { TaskModule } from './task/task.module';
     CalendarModule,
     MatterModule,
     TaskModule,
+    ProfileModule,
     SharedModule
   ],
 })

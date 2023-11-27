@@ -1,0 +1,36 @@
+<nz-card>
+    <nz-descriptions [nzTitle]="action">
+        <nz-descriptions-item nzTitle="Họ tên">{{user.ho_ten}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Số điện thoại">{{user.account.sdt}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Email">{{user.email}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Ngày sinh">{{user.ngay_sinh}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Địa chỉ">
+            {{user.dia_chi}}
+        </nz-descriptions-item>
+    </nz-descriptions>
+    <nz-divider />
+    <nz-descriptions nzTitle="Đơn vị công tác">
+        <nz-descriptions-item nzTitle="Tên công ty">Law Office Company Inc.</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Bộ phận">{{user.bo_phan.ten_bo_phan}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Chức vụ">{{user.chuc_vu.ten_chuc_vu}}</nz-descriptions-item>
+    </nz-descriptions>
+
+    <nz-divider />
+    <nz-descriptions nzTitle="Thông tin tài khoản">
+        <nz-descriptions-item nzTitle="Số điện thoại">{{user.account.sdt}}</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Mật khẩu">*******</nz-descriptions-item>
+    </nz-descriptions>
+    <ng-template #action>
+        <nz-row>
+            <nz-col nzSpan="12">
+                Thông tin cá nhân
+            </nz-col>
+            <nz-col nzSpan="3" nzOffset="9">
+                <button routerLink="edit" nz-button class="btn-dark-blue">
+                    <span nz-icon nzType="edit" nzTheme="outline"></span>
+                    Chỉnh sửa
+                </button>
+            </nz-col>
+        </nz-row>
+    </ng-template>
+</nz-card>

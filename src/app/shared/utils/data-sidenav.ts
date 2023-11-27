@@ -35,6 +35,7 @@ export const menuSideNavTVV = [
         {
           icon: 'profile',
           title: 'Manage Profile',
+          link: 'manage-profile'
         },
         {
           icon: 'setting',
@@ -163,11 +164,12 @@ export const menuSideNavLaw = [
   },
   {
     icon: 'team',
-    title: 'Manage Profile',
+    title: 'Manage Info',
     children: [
         {
           icon: 'profile',
           title: 'Manage Profile',
+          link: 'manage-profile'
         },
         {
           icon: 'setting',

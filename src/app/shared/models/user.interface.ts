@@ -2,7 +2,7 @@ import { Part, Position } from "./position.interface";
 
 export interface User {
     id?: String;
-    fullName?: String;
+    fullName?: string;
     email?: String;
     dateOfBirth?: Date | String;
     address?: String;

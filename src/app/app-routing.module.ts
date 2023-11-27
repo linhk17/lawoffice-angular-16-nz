@@ -15,6 +15,8 @@ import { ManageMatterComponent } from './modules/matter/manage-matter/manage-mat
 import { MatterDetailComponent } from './modules/matter/matter-detail/matter-detail.component';
 import { MatterFormComponent } from './modules/matter/matter-form/matter-form.component';
 import { ManageTaskComponent } from './modules/task/manage-task/manage-task.component';
+import { ManageProfileComponent } from './modules/profile/manage-profile/manage-profile.component';
+import { EditProfileComponent } from './modules/profile/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
@@ -189,6 +191,19 @@ const routes: Routes = [
           {
             path: '',
             component: ManageCalendarComponent,
+          },
+        ],
+      },
+      {
+        path: 'manage-profile',
+        children: [
+          {
+            path: '',
+            component: ManageProfileComponent,
+          },
+          {
+            path: 'edit',
+            component: EditProfileComponent,
           },
         ],
       },

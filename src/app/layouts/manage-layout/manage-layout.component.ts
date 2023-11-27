@@ -13,7 +13,7 @@ export class ManageLayoutComponent {
   isCollapsed = false;
   listSideNav: any = [];
   role: string | number = '';
-  public user?: User;
+  public user?: any;
 
   constructor(
     private userService: UserService,
@@ -21,34 +21,14 @@ export class ManageLayoutComponent {
   ){}
 
   ngOnInit(){
-    this.getProfileUser();
+
+    this.userService.getProfileUser()
+    this.userService.currentUser.subscribe(res => this.user = res);
+
     this.role = this.storage.getUser().role;
     this.listSideNav = this.role == 1 ? menuSideNavAdmin 
     : this.role == 2 ? menuSideNavLaw : menuSideNavTVV
   }
-  getProfileUser() {
-    this.userService.getProfileUser().pipe()
-    .subscribe((res: any) => {
-      this.user = {
-        id: res._id,
-        fullName: res.ho_ten,
-        email: res.email,
-        dateOfBirth: res.ngay_sinh,
-        part: {
-          id: res.bo_phan._id,
-          namePart: res.bo_phan.ten_bo_phan
-        },
-        position: {
-          id: res.chuc_vu._id,
-          namePosition: res.chuc_vu.ten_chuc_vu
-        },
-        address: res.dia_chi,
-        avatar: res?.avatar,
-        phone: res.account.sdt
-      }
-    })
-  }
-
   logout(){
     this.storage.clean()
   }

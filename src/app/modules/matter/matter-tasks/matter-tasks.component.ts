@@ -57,10 +57,8 @@ export class MatterTasksComponent {
       .subscribe((res) => (this.tasks = res));
   }
   getUser() {
-    this.userService
-      .getProfileUser()
-      .pipe()
-      .subscribe((res) => (this.user = res));
+    this.userService.getProfileUser();
+    this.userService.currentUser.subscribe((res) => this.user = res);
   }
   showModal(): void {
     this.isVisible = true;

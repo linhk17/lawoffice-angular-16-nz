@@ -90,9 +90,9 @@ export class QuoteEditComponent {
   }
 
   getUser(){
-    this.userService.getProfileUser()
-    .pipe()
-    .subscribe(res => this.user = res)
+    this.userService.getProfileUser();
+    this.userService.getProfileUser();
+    this.userService.currentUser.subscribe((res) => this.user = res);
   }
 
   setPrice(id: string){
