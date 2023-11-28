@@ -35,19 +35,29 @@ export class EditProfileComponent {
     private fb: FormBuilder,
     private message: NzMessageService,
     private router: Router
-  ) {}
+  ) {
+    this.profileForm = this.fb.group({
+      ho_ten: [''],
+      dia_chi: [''],
+      ngay_sinh: [''],
+      email: ['', [Validators.email]],
+      part: [{ value: '', disabled: true }],
+      position: [{ value: '', disabled: true }],
+    });
+  }
 
   ngOnInit() {
     this.userService.getProfileUser();
     this.userService.currentUser.subscribe((res) => {
-      this.profileForm = this.fb.group({
+      this.profileForm.patchValue({
         ho_ten: [res?.ho_ten],
         dia_chi: [res?.dia_chi],
-        email: [res?.email, [Validators.email]],
+        email: [res?.email],
         ngay_sinh: [res?.ngay_sinh],
-        part: [{ value: res?.bo_phan?.ten_bo_phan, disabled: true }],
-        position: [{ value: res?.chuc_vu?.ten_chuc_vu, disabled: true }],
+        part: [res?.bo_phan?.ten_bo_phan],
+        position: [res?.chuc_vu?.ten_chuc_vu],
       });
+
       this.user = res;
     });
   }
@@ -63,10 +73,6 @@ export class EditProfileComponent {
       reader.onerror = (error) => reject(error);
     });
   }
-  
-  createMessage(type: string, mess: string): void {
-    this.message.create(type, mess);
-  }
   getErrorMessage(control: any, typeError?: String) {
     if (control.hasError('required')) {
       return 'Vui lòng nhập vào trường này';
@@ -80,8 +86,8 @@ export class EditProfileComponent {
         ...this.user,
         ...this.profileForm.value,
       });
-      this.createMessage('success', 'Chỉnh sửa thành công');
-      this.router.navigate(['/law/manage-profile'])
+      this.message.success('Chỉnh sửa thành công');
+      this.router.navigate(['/law/manage-profile']);
     }
   }
 }

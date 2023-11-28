@@ -65,9 +65,6 @@ export class QuoteEditComponent {
     this.getTimePay();
     this.getUser()
   }
-  createMessage(type: string, mess: string): void {
-    this.message.create(type, mess);
-  }
   getType() {
     this.typeService
       .getAllType()
@@ -110,7 +107,7 @@ export class QuoteEditComponent {
     this.quoteService.update(data, this.quote._id)
     .pipe()
     .subscribe(res => {
-      this.createMessage('success', 'Tạo báo giá thành công');
+      this.message.success('Tạo báo giá thành công');
       this.router.navigate(['/counselor/manage-quote/', res._id])
     } 
     )

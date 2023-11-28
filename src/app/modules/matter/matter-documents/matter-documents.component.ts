@@ -13,15 +13,17 @@ export class MatterDocumentsComponent {
   @Output() uploadFile = new EventEmitter();
   // docs: any = [];
   file: any;
+  error: boolean = false;
   constructor() {}
   ngOnInit() {
     this.documents ? (this.documents = this.documents) : (this.documents = []);
   }
   transformFile(e: any) {
     let selected = e.target.files[0];
-    if (selected.size > 50000) {
-      alert('Kích thước file vượt quá mức quy định, vui lòng chọn file dưới 50KB');
+    if (selected.size > 5 * 1024 * 1024) {
+      this.error = true;
     } else {
+      this.error = false;
       let reader = new FileReader();
       reader.readAsDataURL(selected);
       reader.onload = (e: any) => {

@@ -23,7 +23,11 @@ export class ManageLayoutComponent {
   ngOnInit(){
 
     this.userService.getProfileUser();
-    this.userService.currentUser.subscribe(res => this.user = res);
+    this.userService.currentUser.subscribe(res => {
+      console.log(res);
+      
+      this.user = res
+    } );
 
     this.role = this.storage.getUser().role;
     this.listSideNav = this.role == 1 ? menuSideNavAdmin 

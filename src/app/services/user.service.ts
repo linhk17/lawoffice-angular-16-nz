@@ -10,8 +10,10 @@ import { environment } from 'src/environment';
 export class UserService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   prefixApi: String = '/user';
+
   user = new Subject<any>();
   currentUser = this.user.asObservable();
+  
   constructor(
     private httpClient: HttpClient,
     private storage: StorageService
