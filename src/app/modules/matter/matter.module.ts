@@ -11,6 +11,7 @@ import { MatterStepsComponent } from './matter-steps/matter-steps.component';
 import { MatterFeesComponent } from './matter-fees/matter-fees.component';
 import { MatterFormComponent } from './matter-form/matter-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatterRoutingModule } from './matter-routing.module';
 
 
 
@@ -27,9 +28,10 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    SharedModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    MatterRoutingModule,
+    // AppRoutingModule,
+    SharedModule,
   ]
 })
 export class MatterModule { }

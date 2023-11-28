@@ -6,6 +6,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ManageCalendarComponent } from './manage-calendar/manage-calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ModalDetailCalendarComponent } from './modal-detail-calendar/modal-detail-calendar.component';
+import { CalendarRoutingModule } from './calendar-routing.module';
 
 
 
@@ -17,6 +18,7 @@ import { ModalDetailCalendarComponent } from './modal-detail-calendar/modal-deta
   ],
   imports: [
     CommonModule,
+    CalendarRoutingModule,
     SharedModule,
     ReactiveFormsModule,
     FormsModule,

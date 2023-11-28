@@ -63,6 +63,7 @@ export class EditProfileComponent {
       reader.onerror = (error) => reject(error);
     });
   }
+  
   createMessage(type: string, mess: string): void {
     this.message.create(type, mess);
   }

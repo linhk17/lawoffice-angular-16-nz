@@ -4,7 +4,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ManageProfileComponent } from './manage-profile/manage-profile.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from 'src/app/app-routing.module';
+import { ProfileRoutingModule } from './profile-routing.module';
 
 
 
@@ -15,8 +15,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
   ],
   imports: [
     CommonModule,
+    ProfileRoutingModule,
     ReactiveFormsModule,
-    AppRoutingModule,
     SharedModule
   ]
 })

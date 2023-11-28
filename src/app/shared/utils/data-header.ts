@@ -17,7 +17,7 @@ const menuSidenav = [
     {
         title: 'Trang chủ',
         expand: false,
-        link: '/'
+        link: '/home'
     },
     {
         title: 'Giới thiệu',

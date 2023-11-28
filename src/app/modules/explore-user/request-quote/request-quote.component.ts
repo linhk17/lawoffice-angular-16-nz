@@ -36,6 +36,7 @@ export class RequestQuoteComponent {
   provinces: Province[] = [];
   districts?: District[];
   types: TypeService[] = [];
+
   phoneNumberUtil = PhoneNumberUtil.getInstance();
 
   constructor(
@@ -82,7 +83,8 @@ export class RequestQuoteComponent {
         const phoneNumber = this.phoneNumberUtil.parseAndKeepRawInput(
           control.value, regionCode
         );
-        validNumber = this.phoneNumberUtil.isValidNumber(phoneNumber);
+        // validNumber = this.phoneNumberUtil.isValidNumber(phoneNumber);
+        validNumber = this.phoneNumberUtil.isValidNumberForRegion(phoneNumber, regionCode)
       } catch (e) { }
   
       return validNumber ? [] : { 'wrongNumber': { value: control.value } };

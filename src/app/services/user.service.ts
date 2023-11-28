@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { User } from '../shared/models/user.interface';
 import { environment } from 'src/environment';
 @Injectable({
@@ -10,7 +10,7 @@ import { environment } from 'src/environment';
 export class UserService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   prefixApi: String = '/user';
-  user = new BehaviorSubject<any>(null);
+  user = new Subject<any>();
   currentUser = this.user.asObservable();
   constructor(
     private httpClient: HttpClient,

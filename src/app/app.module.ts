@@ -14,7 +14,7 @@ import { LayoutsModule } from './layouts/layouts.module';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { RedirectGuard } from './shared/guards/redirect.guard';
 import { SharedModule } from './shared/shared.module';
-import { ModulesModule } from './modules/modules.module';
+// import { ModulesModule } from './modules/modules.module';
 import localeDe from '@angular/common/locales/de';
 import localeDeExtra from '@angular/common/locales/extra/de';
 registerLocaleData(en);
@@ -29,7 +29,7 @@ registerLocaleData(localeDe, 'de-DE', localeDeExtra);
     BrowserAnimationsModule,
     SharedModule,
     LayoutsModule,
-    ModulesModule
+    // ModulesModule
   ],
 
   providers: [

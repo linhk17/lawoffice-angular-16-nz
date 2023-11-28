@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthenticationRoutingModule } from './authentication-routing.module';
 
+ 
 
 @NgModule({
   declarations: [
@@ -11,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
+    AuthenticationRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule
