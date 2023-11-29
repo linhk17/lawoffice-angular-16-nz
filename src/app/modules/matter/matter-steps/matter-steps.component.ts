@@ -45,6 +45,15 @@ export class MatterStepsComponent {
   handleCancel(): void {
     this.isVisible = false;
   }
+  setStep(input: HTMLInputElement){
+    this.step = [
+     ...this.step,
+     {
+      ten_qt: input.value
+     }
+    ]
+    input.value = ''
+   }
   getStep() {
     this.stepService
       .getByIdService(this.service)

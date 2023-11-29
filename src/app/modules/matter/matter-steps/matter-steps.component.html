@@ -43,11 +43,22 @@
             <nz-form-item>
                 <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="mqh" nzRequired>Quy trình</nz-form-label>
                 <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="Please select your employees !">
-                    <nz-select id="mqh" formControlName="ten_qt"
+                    <nz-select [nzDropdownRender]="renderTemplate" id="mqh" formControlName="ten_qt"
                         nzPlaceHolder="Select a option and change input text above">
                         <nz-option *ngFor="let item of step" [nzValue]="item.ten_qt"
                             [nzLabel]="item.ten_qt"></nz-option>
                     </nz-select>
+                    <ng-template #renderTemplate>
+                        <nz-divider style="margin: 10px;"></nz-divider>
+                        <nz-space  style="margin-left: 10px; margin-bottom: 8px;">
+                          <input type="text" nz-input #inputElement/>
+                          <button (click)="setStep(inputElement)" style="margin-left: 5px;" 
+                          *nzSpaceItem nz-button class="btn-dark-blue" >
+                            <span nz-icon nzType="plus"></span>
+                            Thêm mới
+                          </button>
+                        </nz-space>
+                      </ng-template>
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>

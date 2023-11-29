@@ -40,6 +40,14 @@ export class MatterContactsComponent {
   handleCancel(): void {
     this.isVisible = false;
   }
+
+  setListRelationship(input: HTMLInputElement){
+   this.listRelationship = [
+    ...this.listRelationship,
+    input.value
+   ]
+   input.value = ''
+  }
   submitForm(): void {
     if (this.contactsForm.valid) {
       this.updateContact.emit({lien_he: [...this.contacts, this.contactsForm.value]})

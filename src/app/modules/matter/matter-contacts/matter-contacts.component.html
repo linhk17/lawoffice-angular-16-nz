@@ -34,9 +34,20 @@
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="mqh" nzRequired>Mối quan hệ</nz-form-label>
         <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="Please select your relationship!">
-          <nz-select id="mqh" formControlName="mqh" nzPlaceHolder="Select a option and change input text above">
+          <nz-select dropdown render  [nzDropdownRender]="renderTemplate" id="mqh" formControlName="mqh" nzPlaceHolder="Select a option and change input text above">
             <nz-option *ngFor="let item of listRelationship" [nzValue]="item" [nzLabel]="item"></nz-option>
           </nz-select>
+          <ng-template #renderTemplate>
+            <nz-divider style="margin: 10px;"></nz-divider>
+            <nz-space  style="margin-left: 10px; margin-bottom: 8px;">
+              <input type="text" nz-input #inputElement/>
+              <button (click)="setListRelationship(inputElement)" style="margin-left: 5px;" 
+              *nzSpaceItem nz-button class="btn-dark-blue" >
+                <span nz-icon nzType="plus"></span>
+                Thêm mới
+              </button>
+            </nz-space>
+          </ng-template>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
@@ -48,6 +59,7 @@
             <nz-option nzValue="Nữ" nzLabel="Nữ"></nz-option>
             <nz-option nzValue="Khác" nzLabel="Khác"></nz-option>
           </nz-select>
+          
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
