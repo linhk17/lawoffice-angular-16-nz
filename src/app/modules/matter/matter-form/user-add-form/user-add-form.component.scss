@@ -1,0 +1,30 @@
+.form-item-control{
+    margin-bottom: 2px;
+}
+.text-error{
+    margin-top: 2px;
+    color: red;
+    visibility: hidden;
+    height: 20px;
+    transition: .5 all ease-in-out;
+}
+.active-error{
+    visibility: visible;
+    animation: .5s fadeIn;
+
+}
+.active-control-error{
+    border: 1px solid red;
+    animation: .5s fadeIn;
+
+
+}
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      visibility: visible;
+      opacity: 1;
+    }
+  }

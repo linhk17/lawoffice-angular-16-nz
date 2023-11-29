@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import {
-  AbstractControl,
-  FormControl,
   FormGroup,
   NonNullableFormBuilder,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { ProvinceService } from 'src/app/services/province.service';
@@ -13,8 +10,6 @@ import { TypeServiceService } from 'src/app/services/type-service.service';
 import { District, Province } from 'src/app/shared/models/province.interface';
 import { TypeService } from 'src/app/shared/models/type-service.interface';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { countries } from 'src/app/shared/utils/country-phone-code';
-import { PhoneNumberUtil, PhoneNumber } from 'google-libphonenumber';
 import { PhoneNumberValidator } from 'src/app/shared/utils/validator';
 import { CountryPhoneCodeService } from 'src/app/services/country-phone-code.service';
 @Component({
@@ -25,21 +20,12 @@ import { CountryPhoneCodeService } from 'src/app/services/country-phone-code.ser
 export class RequestQuoteComponent {
   submitted: Boolean = false;
   countryCode: any;
-  requestForm: FormGroup<{
-    email: FormControl<string>;
-    fullName: FormControl<string>;
-    phone: FormControl<string>;
-    phonePrefix: FormControl<string>;
-    type: FormControl<string>;
-    problem: FormControl<string>;
-    province: FormControl<string>;
-  }>;
+  requestForm: FormGroup;
 
   provinces: Province[] = [];
   districts?: District[];
   types: TypeService[] = [];
-
-
+  phoneCode: string = 'VN';
   constructor(
     private fb: NonNullableFormBuilder,
     private provinceService: ProvinceService,
@@ -47,73 +33,75 @@ export class RequestQuoteComponent {
     private quoteService: QuoteService,
     private message: NzMessageService,
     private phoneCodeService: CountryPhoneCodeService
-
   ) {
     this.requestForm = this.fb.group({
       email: ['', [Validators.email, Validators.required]],
       fullName: ['', [Validators.required]],
-      phone: ['', [Validators.required, PhoneNumberValidator('VN')]],
+      phone: ['', [Validators.required, PhoneNumberValidator(this.phoneCode)]],
       province: ['', [Validators.required]],
       problem: ['', [Validators.required]],
       type: ['', [Validators.required]],
-      phonePrefix: ['84'],
-    
+      phonePrefix: ['VN'],
     });
   }
-  ngOnInit(){
-    // this.countryCode = this.phoneCodeService.getPhoneCode()
-    // .subscribe(
-    //   res => console.log(res)
-    // )
-    this.countryCode = countries.sort((a: any, b: any) => {
-      return parseInt(a.code)  - parseInt(b.code);
-    })
-    
-    //  countries
-    this.provinceService.getProvinces()
-    .subscribe((res: Province[]) => {
-      this.provinces = res
-    })
+  ngOnInit() {
+    this.phoneCodeService.getPhoneCode()
+    .subscribe(
+      (res: any) => {
+        this.countryCode = res.sort((a: any, b: any) => {
+          return parseInt(a.dial_code) - parseInt(b.dial_code);
+        });
+      }
 
-    this.typeService.getAllType().pipe()
-    .subscribe(res => {
-      this.types = res.map((item: any) => {
-        return {
-          id: item._id,
-          nameType: item.ten_linh_vuc
-        }
-      })
-    })
+    );
+    this.provinceService.getProvinces().subscribe((res: Province[]) => {
+      this.provinces = res;
+    });
+
+    this.typeService
+      .getAllType()
+      .pipe()
+      .subscribe((res) => {
+        this.types = res.map((item: any) => {
+          return {
+            id: item._id,
+            nameType: item.ten_linh_vuc,
+          };
+        });
+      });
   }
-  setProvince(target: any){
-    this.provinceService.getDistricts('2')
-    .subscribe((res: Province) => {
-      this.districts = res.districts   
-    })
+  setProvince(target: any) {
+    this.provinceService.getDistricts('2').subscribe((res: Province) => {
+      this.districts = res.districts;
+    });
   }
-  
+  changeCountryCode(event: any){
+    this.phoneCode = event;
+    this.requestForm.controls['phone'].addValidators(PhoneNumberValidator(this.phoneCode))
+  }
   submitForm(): void {
     if (this.requestForm.valid) {
       this.submitted = true;
-    if(!this.requestForm.invalid){
-      this.quoteService.create({
-        khach_hang: {
-          ho_ten: this.requestForm.value.fullName,
-          sdt: this.requestForm.value.phone,
-          email: this.requestForm.value.email
-        },
-        linh_vuc: this.requestForm.value.type,
-        van_de: this.requestForm.value.problem,
-        tinh_thanh: this.requestForm.value.province,
-        status: 0
-      })
-      .subscribe(res => {
-        this.message.success('Gửi yêu cầu báo giá thành công');
-        this.requestForm.reset()
-      })
-    }
+      if (!this.requestForm.invalid) {
+        this.quoteService
+          .create({
+            khach_hang: {
+              ho_ten: this.requestForm.value.fullName,
+              sdt: this.requestForm.value.phone,
+              email: this.requestForm.value.email,
+            },
+            linh_vuc: this.requestForm.value.type,
+            van_de: this.requestForm.value.problem,
+            tinh_thanh: this.requestForm.value.province,
+            status: 0,
+          })
+          .subscribe((res) => {
+            this.message.success('Gửi yêu cầu báo giá thành công');
+            this.requestForm.reset();
+          });
+      }
     } else {
-      Object.values(this.requestForm.controls).forEach(control => {
+      Object.values(this.requestForm.controls).forEach((control) => {
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });

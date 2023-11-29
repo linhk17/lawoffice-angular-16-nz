@@ -10,9 +10,7 @@ export class ManageProfileComponent {
   user?: any;
   constructor(
     private userService: UserService
-  ){
-
-  }
+  ){}
   ngOnInit(){
     this.userService.getProfileUser();
     this.userService.currentUser.subscribe((res) => {

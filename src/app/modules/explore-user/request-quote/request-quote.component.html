@@ -33,8 +33,8 @@
           nzErrorTip="Number phone invalid !">
           <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
             <ng-template #addOnBeforeTemplate>
-              <nz-select formControlName="phonePrefix" class="phone-select">
-                <nz-option *ngFor="let code of countryCode" [nzLabel]="'+' + code.code + '  ' + code.name"
+              <nz-select (ngModelChange)="changeCountryCode($event)" formControlName="phonePrefix" class="phone-select">
+                <nz-option *ngFor="let code of countryCode" [nzLabel]="code.dial_code + '  ' + code.name"
                   [nzValue]="code.code"></nz-option>
               </nz-select>
             </ng-template>

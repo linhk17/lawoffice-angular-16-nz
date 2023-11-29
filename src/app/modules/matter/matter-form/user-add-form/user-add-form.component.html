@@ -1,0 +1,64 @@
+<nz-modal [(nzVisible)]="show" nzTitle="The first Modal"
+    (nzOnOk)="submitForm()" (nzOnCancel)="isClosed.emit(!show)">
+    <ng-container *nzModalContent>
+        <form nz-form [formGroup]="userForm" (ngSubmit)="submitForm()">
+            <nz-form-item class="form-item-control">
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="ho_ten">Họ tên</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24">
+                    <input [class.active-control-error]="submitted && formControl['ho_ten'].errors" 
+                    nz-input formControlName="ho_ten" id="ho_ten" />
+                    <div class="text-error" 
+                    [class.active-error]="submitted && formControl['ho_ten'].errors">
+                        {{getErrorMessage(formControl['ho_ten'], 'ho_ten')}}
+                    </div>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item class="form-item-control">
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="ngay_sinh">Ngày sinh</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24">
+                    <input placeholder="mm/dd/yyyy" [class.active-control-error]="submitted && formControl['ngay_sinh'].errors"
+                     nz-input formControlName="ngay_sinh" id="ngay_sinh" />
+                    <div  class="text-error" [class.active-error]="submitted && formControl['ngay_sinh'].errors">
+                        {{getErrorMessage(formControl['ngay_sinh'], 'ngay_sinh')}}
+                    </div>
+                </nz-form-control>
+            </nz-form-item>
+           
+            <nz-form-item class="form-item-control">
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">Email</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24">
+                    <input [class.active-control-error]="submitted && formControl['email'].errors"
+                     nz-input formControlName="email" id="email" />
+                    <div class="text-error" [class.active-error]="submitted && formControl['email'].errors">
+                        {{getErrorMessage(formControl['email'], 'email')}}
+                    </div>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item class="form-item-control">
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="sdt">Số điện thoại</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24">
+                    <input [class.active-control-error]="submitted && formControl['sdt'].errors"
+                     nz-input formControlName="sdt" id="sdt" />
+                    <div class="text-error" [class.active-error]="submitted && formControl['sdt'].errors">
+                        {{getErrorMessage(formControl['sdt'], 'wrongNumber')}}
+                    </div>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item class="form-item-control">
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="dia_chi">Địa chỉ</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24">
+                    <textarea 
+                    [class.active-control-error]="submitted && formControl['dia_chi'].errors"
+                     nz-input formControlName="dia_chi" id="dia_chi"></textarea>
+                    <div  class="text-error" [class.active-error]="submitted && formControl['dia_chi'].errors">
+                        {{getErrorMessage(formControl['dia_chi'], 'dia_chi')}}
+                    </div>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+        <div *nzModalFooter>
+            <button nz-button nzType="default" (click)="isClosed.emit(!show)">Cancel</button>
+            <button nz-button nzType="primary" (click)="submitForm()">Submit</button>
+        </div>
+    </ng-container>
+</nz-modal>

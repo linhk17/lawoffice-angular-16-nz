@@ -14,7 +14,6 @@ import { ServiceService } from 'src/app/services/service.service';
 import { TimePayService } from 'src/app/services/time-pay.service';
 import { TypeServiceService } from 'src/app/services/type-service.service';
 import { UserService } from 'src/app/services/user.service';
-import { CurrencyFormatPipe } from 'src/app/shared/pipe/currency.pipe';
 
 @Component({
   selector: 'app-matter-form',
@@ -29,24 +28,16 @@ export class MatterFormComponent {
   employees: any = [];
   timePay: any = [];
   priceTotal: string | null = '';
+  isVisible: boolean = false;
+  matterForm: FormGroup;
 
   formatterPercent = (value: number): string => `${value} %`;
   parserPercent = (value: string): string => value.replace(' %', '');
-  formaterPrice = (value: string | number): string => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  formaterPrice = (value: string | number): string => 
+  `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   parsePrice = (value: string): string => value.replace(/\$\s?|(,*)/g, '');
 
-  matterForm: FormGroup<{
-    ten_vu_viec: FormControl<string>;
-    linh_vuc: FormControl<string>;
-    dich_vu: FormControl<string>;
-    khach_hang: FormControl<string>;
-    luat_su: FormControl<string>;
-    chiet_khau_hoa_hong: FormControl<number>;
-    dieu_khoan_thanh_toan: FormControl<number>;
-    tong_tien: FormControl<number>;
-    khach_hang_access: FormControl<any>;
-    luat_su_access: FormControl<any>;
-  }>;
+
 
   constructor(
     private typeServiceService: TypeServiceService,
@@ -101,14 +92,12 @@ export class MatterFormComponent {
     this.subscriptions.add(
       this.serviceService
       .getByType(id)
-      .pipe()
       .subscribe((res) => (this.services = res))
     )
   }
   getAllUser() {
     this.userService
       .getAllUser()
-      .pipe()
       .subscribe((res: any) => {
         this.users = res.filter((item: any) => item.account.quyen == 0);
         this.employees = res.filter((item: any) => item.account.quyen != 0);

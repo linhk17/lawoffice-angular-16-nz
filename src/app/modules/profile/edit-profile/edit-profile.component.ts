@@ -21,14 +21,7 @@ import { User } from 'src/app/shared/models/user.interface';
 export class EditProfileComponent {
   public user: any = {};
   submitted: boolean = false;
-  profileForm: FormGroup = new FormGroup({
-    ho_ten: new FormControl(''),
-    dia_chi: new FormControl(''),
-    email: new FormControl(''),
-    ngay_sinh: new FormControl(''),
-    part: new FormControl(''),
-    position: new FormControl(''),
-  });
+  profileForm: FormGroup;
   constructor(
     private userService: UserService,
     private storage: StorageService,

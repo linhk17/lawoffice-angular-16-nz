@@ -35,11 +35,16 @@
                 <nz-form-item>
                     <nz-form-label [nzSm]="8" [nzXs]="24" nzFor="khach_hang" nzRequired>Khách hàng</nz-form-label>
                     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please select your customer!">
-                        <nz-select id="khach_hang" formControlName="khach_hang"
-                            nzPlaceHolder="Select a option and change input text above">
+                        <nz-select nzShowSearch [nzDropdownRender]="renderTemplate" id="khach_hang"
+                            formControlName="khach_hang" nzPlaceHolder="Select a option and change input text above">
                             <nz-option *ngFor="let item of users" [nzValue]="item._id"
                                 [nzLabel]="item.ho_ten"></nz-option>
                         </nz-select>
+                        <ng-template #renderTemplate>
+                            <nz-divider style="margin: 10px;"></nz-divider>
+                            <button (click)="isVisible = !isVisible" nz-button type="primary" class="btn-dark-blue"
+                                style="margin-left: 10px;">Thêm mới</button>
+                        </ng-template>
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>
@@ -118,3 +123,6 @@
         </nz-form-item>
     </form>
 </nz-card>
+
+<app-user-add-form [show]="isVisible" (isClosed)="isVisible = !isVisible"
+    (isAddSuccess)="getAllUser()"></app-user-add-form>

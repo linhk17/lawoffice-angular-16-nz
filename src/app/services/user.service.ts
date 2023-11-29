@@ -39,6 +39,13 @@ export class UserService {
     )
   }
 
+  create(payload: any): Observable<any>{
+    return this.httpClient.post<any>(
+      environment['apiUrl'] + this.prefixApi + '/',
+      payload
+    )
+  }
+
   updateUser(user: any) {
     this.httpClient.patch<User>(
       environment['apiUrl'] + this.prefixApi + '/' + user._id, user
@@ -46,4 +53,5 @@ export class UserService {
       this.user.next(res);
     })
   }
+  
 }

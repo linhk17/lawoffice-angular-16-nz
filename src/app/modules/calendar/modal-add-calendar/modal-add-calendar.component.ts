@@ -24,16 +24,7 @@ export class ModalAddCalendarComponent {
   users: User[] | any = [];
   user?: any;
 
-  timeAppointForm: FormGroup<{
-    tieu_de: FormControl<string>,
-    loai_lich: FormControl<string>,
-    mo_ta: FormControl<string>,
-    start: FormControl<string>,
-    end: FormControl<string>,
-    bo_phan: FormControl<string>,
-    nhan_vien: FormControl<string>,
-    ghi_chu: FormControl<string>,
-  }>
+  timeAppointForm: FormGroup;
   constructor(
     private typeAppointMentService: TypeAppointmentService,
     private partService: PartService,
