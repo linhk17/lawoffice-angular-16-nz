@@ -62,4 +62,10 @@ export class MatterContactsComponent {
       });
     }
   }
+  deleteUser(key: string){
+    const arr = this.contacts.filter((item: any) => item.key !== key);
+    this.updateContact.emit({
+      lien_he: arr
+    })
+  }
 }

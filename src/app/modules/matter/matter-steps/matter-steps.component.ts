@@ -66,8 +66,14 @@ export class MatterStepsComponent {
       quy_trinh: [
         ...this.steps
       ],
-    });
-    
+    });  
+  }
+
+  deleteStep(id: string){
+    const arr = this.steps.filter((item: any) => item._id !== id);    
+    this.updatePeriod.emit({
+      quy_trinh: arr
+    })
   }
 
   submitForm(): void {

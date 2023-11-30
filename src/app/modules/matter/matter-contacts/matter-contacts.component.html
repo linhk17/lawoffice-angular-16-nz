@@ -19,6 +19,15 @@
       <td>{{data.sdt}}</td>
       <td>{{data.dia_chi}}</td>
       <td>{{data.mqh}}</td>
+      <td>
+        <app-modal-confirm
+        [btnTitle]="'Delete'"
+        [contentConfirm]="'Hãy xác nhận rằng bạn chắc chắn muốn xoá'"
+        [typeConfirm]="'error'"
+        [titleConfim]="'Bạn chắc chắn muốn xoá'"
+        (isConfirm)="deleteUser(data.key)"
+        ></app-modal-confirm>
+      </td>
     </tr>
   </tbody>
 </nz-table>

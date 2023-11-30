@@ -9,6 +9,7 @@ import { TableDocumentsComponent } from './component/table-documents/table-docum
 import { StepsComponent } from './component/steps/steps.component';
 import { PlaceAutocompleteDirective } from './directive/place-autocomplete.directive';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ModalConfirmComponent } from './component/modal-confirm/modal-confirm.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CurrencyFormatPipe,
     TableDocumentsComponent,
     StepsComponent,
-    PlaceAutocompleteDirective
+    PlaceAutocompleteDirective,
+    ModalConfirmComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     InputSearchComponent,
     TableDocumentsComponent,
     StepsComponent,
-    PlaceAutocompleteDirective
+    PlaceAutocompleteDirective,
+    ModalConfirmComponent
   ],
   providers: [CurrencyFormatPipe]
 })

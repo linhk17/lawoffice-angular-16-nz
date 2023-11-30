@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { MatterService } from 'src/app/services/matter.service';
 import { TaskService } from 'src/app/services/task.service';
@@ -16,7 +17,8 @@ export class TaskDetailComponent {
     private route: ActivatedRoute,
     private taskService: TaskService,
     private matterService: MatterService,
-    private modalService: NzModalService
+    private modalService: NzModalService,
+    private message: NzMessageService
   ) {}
   ngOnInit() {
     this.route.params.subscribe((param) => {
@@ -33,12 +35,13 @@ export class TaskDetailComponent {
       nzTitle: 'Confirm',
       nzContent: 'Bla bla ...',
       nzOkText: 'OK',
-      nzCancelText: 'Cancel'
+      nzCancelText: 'Cancel',
     });
   }
   updateTask(event: any) {
-    this.taskService
-      .update(this.task._id, { ...event })
-      .subscribe((res) => (this.task = res));
+    this.taskService.update(this.task._id, { ...event }).subscribe((res) => {
+      this.task = res;
+      this.message.success('Cập nhật thành công');
+    });
   }
 }

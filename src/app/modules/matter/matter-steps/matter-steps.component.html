@@ -1,4 +1,5 @@
-<button *ngIf="edit" nz-button [nzType]="'primary'" class="btn-dark-blue" (click)="showModal()"><span>Thêm mới</span></button>
+<button *ngIf="edit" nz-button [nzType]="'primary'" class="btn-dark-blue" (click)="showModal()"><span>Thêm
+        mới</span></button>
 
 <nz-table [nzTotal]="50" #basicTable [nzData]="steps">
     <thead>
@@ -33,6 +34,14 @@
                     </button>
                 </ng-template>
             </td>
+            <td>
+                <app-modal-confirm 
+                [btnTitle]="'Delete'" 
+                [contentConfirm]="'Hãy xác nhận rằng bạn chắc chắn muốn xoá'"
+                [typeConfirm]="'error'" 
+                [titleConfim]="'Bạn chắc chắn muốn xoá'"
+                 (isConfirm)="deleteStep(data._id)"></app-modal-confirm>
+            </td>
         </tr>
     </tbody>
 </nz-table>
@@ -50,15 +59,15 @@
                     </nz-select>
                     <ng-template #renderTemplate>
                         <nz-divider style="margin: 10px;"></nz-divider>
-                        <nz-space  style="margin-left: 10px; margin-bottom: 8px;">
-                          <input type="text" nz-input #inputElement/>
-                          <button (click)="setStep(inputElement)" style="margin-left: 5px;" 
-                          *nzSpaceItem nz-button class="btn-dark-blue" >
-                            <span nz-icon nzType="plus"></span>
-                            Thêm mới
-                          </button>
+                        <nz-space style="margin-left: 10px; margin-bottom: 8px;">
+                            <input type="text" nz-input #inputElement />
+                            <button (click)="setStep(inputElement)" style="margin-left: 5px;" *nzSpaceItem nz-button
+                                class="btn-dark-blue">
+                                <span nz-icon nzType="plus"></span>
+                                Thêm mới
+                            </button>
                         </nz-space>
-                      </ng-template>
+                    </ng-template>
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>

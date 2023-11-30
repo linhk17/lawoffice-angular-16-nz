@@ -19,7 +19,8 @@ export class MatterDetailComponent {
     private matterService: MatterService,
     private userService: UserService,
     private router: Router,
-    private modal: NzModalService
+    private modal: NzModalService,
+    private message: NzMessageService
   ) {}
 
   ngOnInit() {
@@ -40,9 +41,11 @@ export class MatterDetailComponent {
     });
   }
   updateMatter(event: any){
-    // console.log({...this.matter, ...event});
     this.matterService.update(this.matter._id, {...this.matter, ...event})
-    .subscribe(res => this.matter = res)    
+    .subscribe(res => {
+      this.matter = res;
+      this.message.success('Cập nhật thành công')
+    })    
   }
 
   showConfirm(mess: string, status: number): void {

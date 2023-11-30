@@ -8,6 +8,7 @@ import {
 import { TaskService } from 'src/app/services/task.service';
 import { UserService } from 'src/app/services/user.service';
 import { differenceInCalendarDays } from 'date-fns';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-matter-tasks',
@@ -34,7 +35,8 @@ export class MatterTasksComponent {
   constructor(
     private fb: NonNullableFormBuilder,
     private userService: UserService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private message: NzMessageService
   ) {
     this.taskForm = this.fb.group({
       ten_cong_viec: ['', [Validators.required]],
@@ -66,6 +68,13 @@ export class MatterTasksComponent {
 
   handleCancel(): void {
     this.isVisible = false;
+  }
+  deleteTask(id: string){
+    this.taskService.delete(id)
+    .subscribe(res => {
+      this.getTasks();
+      this.message.success('Cập nhật thành công')
+    })
   }
   submitForm(): void {
     if (this.taskForm.valid) {

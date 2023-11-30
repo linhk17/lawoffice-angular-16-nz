@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NzModalConfirmPromise } from '../../utils/confirm-modal';
 
 @Component({
   selector: 'app-table-documents',
@@ -48,6 +49,12 @@ export class TableDocumentsComponent {
     a.parentNode?.removeChild(a);
   }
   deleteFile(key: string | number) {
+    // this.showModal.showConfirm()
     const arr = this.documents.filter((item: any) => item.key !== key);
+    this.uploadFile.emit({
+      tai_lieu: arr
+    })
+    console.log(this.documents, arr);
+    
   }
 }

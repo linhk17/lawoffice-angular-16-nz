@@ -16,6 +16,11 @@ export class TaskService {
       environment['apiUrl'] + this.prefixApi + '/'
     )
   }
+  public delete(id: string): Observable<any>{
+    return this.httpClient.delete<any>(
+      environment['apiUrl'] + this.prefixApi + '/' + id
+    )
+  }
   public getById(id: string): Observable<any>{
     return this.httpClient.get<any>(
       environment['apiUrl'] + this.prefixApi + '/' + id

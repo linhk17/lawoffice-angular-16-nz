@@ -25,7 +25,13 @@
                 <a (click)="handleFile(data.file, data.name)">Download File</a>
             </td>
             <td *ngIf="edit">
-                <button (click)="deleteFile(data.key)" nzDanger nzType="primary" nz-button>Delete</button>
+                <!-- <button (click)="deleteFile(data.key)" nzDanger nzType="primary" nz-button>Delete</button> -->
+                <app-modal-confirm 
+                [btnTitle]="'Delete'" 
+                [typeConfirm]="'error'" 
+                [titleConfim]="'Bạn chắc chắn muốn xoá ?'"
+                [contentConfirm]="'Hãy xác nhận rằng bạn chắc chắn muốn xoá.'"
+                (isConfirm)="deleteFile(data.key)"></app-modal-confirm>
             </td>
         </tr>
     </tbody>
