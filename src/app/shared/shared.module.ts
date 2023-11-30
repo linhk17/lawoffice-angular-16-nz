@@ -3,16 +3,18 @@ import { CommonModule } from '@angular/common';
 import { InputSearchComponent } from './component/input-search/input-search.component';
 import { NgZorroModule } from './ngzorro/ngzorro.module';
 import { IconsProviderModule } from './ngzorro/icons-provider.module';
-import { MessageComponent } from './component/message/message.component';
 import { dateFormatPipe } from './pipe/date.pipe';
 import { CurrencyFormatPipe } from './pipe/currency.pipe';
+import { TableDocumentsComponent } from './component/table-documents/table-documents.component';
+import { StepsComponent } from './component/steps/steps.component';
 
 @NgModule({
   declarations: [
     InputSearchComponent,
-    MessageComponent,
     dateFormatPipe,
-    CurrencyFormatPipe
+    CurrencyFormatPipe,
+    TableDocumentsComponent,
+    StepsComponent,
   ],
   imports: [
     CommonModule,
@@ -22,9 +24,12 @@ import { CurrencyFormatPipe } from './pipe/currency.pipe';
   exports: [
     NgZorroModule,
     IconsProviderModule,
-    InputSearchComponent,
     dateFormatPipe,
-    CurrencyFormatPipe
+    CurrencyFormatPipe,
+    InputSearchComponent,
+    TableDocumentsComponent,
+    StepsComponent,
+    
   ],
   providers: [CurrencyFormatPipe]
 })

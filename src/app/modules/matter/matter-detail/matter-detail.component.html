@@ -36,19 +36,19 @@
         <nz-row>
             <nz-col nzSpan="12">
                 <nz-descriptions nzTitle="Luật sư phụ trách" [nzColumn]="2">
-                    <nz-descriptions-item nzTitle="Họ tên">{{matter?.luat_su.ho_ten}}</nz-descriptions-item>
-                    <nz-descriptions-item nzTitle="Số điện thoại">{{matter?.luat_su.account.sdt}}</nz-descriptions-item>
-                    <nz-descriptions-item nzTitle="Email">{{matter?.luat_su.email}}</nz-descriptions-item>
-                    <nz-descriptions-item nzTitle="Chức vụ">{{matter?.luat_su.chuc_vu.ten_chuc_vu}}
+                    <nz-descriptions-item nzTitle="Họ tên">{{matter?.luat_su?.ho_ten}}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Số điện thoại">{{matter?.luat_su?.account.sdt}}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Email">{{matter?.luat_su?.email}}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Chức vụ">{{matter?.luat_su?.chuc_vu?.ten_chuc_vu}}
                     </nz-descriptions-item>
                 </nz-descriptions>
             </nz-col>
             <nz-col nzSpan="12">
                 <nz-descriptions nzTitle="Khách hàng" [nzColumn]="2">
-                    <nz-descriptions-item nzTitle="Họ tên">{{matter?.khach_hang.ho_ten}}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Họ tên">{{matter?.khach_hang?.ho_ten}}</nz-descriptions-item>
                     <nz-descriptions-item
-                        nzTitle="Số điện thoại">{{matter?.khach_hang.account.sdt}}</nz-descriptions-item>
-                    <nz-descriptions-item nzTitle="Email">{{matter?.khach_hang.email}}</nz-descriptions-item>
+                        nzTitle="Số điện thoại">{{matter?.khach_hang?.account.sdt}}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Email">{{matter?.khach_hang?.email}}</nz-descriptions-item>
                 </nz-descriptions>
             </nz-col>
         </nz-row>
@@ -57,7 +57,7 @@
                 <nz-row>
                     <nz-col nzSpan="14">
                         <nz-descriptions nzTitle="Thiết lập chi phí" [nzColumn]="2">
-                            <nz-descriptions-item nzTitle="Điều khoản thanh toán">{{matter?.dieu_khoan_thanh_toan.ten}}
+                            <nz-descriptions-item nzTitle="Điều khoản thanh toán">{{matter?.dieu_khoan_thanh_toan?.ten}}
                                 ngày</nz-descriptions-item>
                             <nz-descriptions-item nzTitle="Tổng tiền">{{matter?.tong_tien | currency : 'VND' :
                                 'code'}}</nz-descriptions-item>
@@ -85,8 +85,10 @@
                 </nz-row>
             </nz-tab>
             <nz-tab nzTitle="Tài liệu">
-                <app-matter-documents [edit]="edit" [documents]="matter?.tai_lieu ? matter.tai_lieu : []"
-                    (uploadFile)="updateMatter($event)"></app-matter-documents>
+                <!-- <app-matter-documents [edit]="edit" [documents]="matter?.tai_lieu ? matter.tai_lieu : []"
+                    (uploadFile)="updateMatter($event)"></app-matter-documents> -->
+                    <app-table-documents [edit]="edit" [documents]="matter?.tai_lieu ? matter.tai_lieu : []"
+                    (uploadFile)="updateMatter($event)"></app-table-documents>
             </nz-tab>
             <nz-tab nzTitle="Liên hệ">
                 <app-matter-contacts [edit]="edit" (updateContact)="updateMatter($event)"
@@ -94,8 +96,8 @@
             </nz-tab>
             <nz-tab nzTitle="Công việc">
                 <ng-container *ngIf="matter">
-                    <app-matter-tasks [edit]="edit" [id]="matter?._id" [access]="matter?.truy_cap.nhan_vien 
-                ? matter?.truy_cap.nhan_vien : []"></app-matter-tasks>
+                    <app-matter-tasks [edit]="edit" [id]="matter?._id" [access]="matter?.truy_cap?.nhan_vien 
+                ? matter?.truy_cap?.nhan_vien : []"></app-matter-tasks>
                 </ng-container>
 
             </nz-tab>
@@ -103,7 +105,7 @@
                 <ng-container *ngIf="matter">
                     <app-matter-steps [edit]="edit" (updatePeriod)="updateMatter($event)"
                         [steps]="matter?.quy_trinh ? matter?.quy_trinh : []"
-                        [service]="matter?.dich_vu._id"></app-matter-steps>
+                        [service]="matter?.dich_vu?._id"></app-matter-steps>
                 </ng-container>
             </nz-tab>
             <nz-tab nzTitle="Chi phí phát sinh">Content of </nz-tab>

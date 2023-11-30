@@ -16,15 +16,34 @@ export class TaskService {
       environment['apiUrl'] + this.prefixApi + '/'
     )
   }
+  public getById(id: string): Observable<any>{
+    return this.httpClient.get<any>(
+      environment['apiUrl'] + this.prefixApi + '/' + id
+    )
+  }
   public create(data: any): Observable<any>{
     return this.httpClient.post<any>(
       environment['apiUrl'] + this.prefixApi + '/', data
     )
   }
 
+  public update(id: string, data: any): Observable<any>{
+    return this.httpClient.patch<any>(
+      environment['apiUrl'] + this.prefixApi + '/' + id, data
+    )
+  }
+
   public getByMatter(id: string): Observable<any>{
     return this.httpClient.post<any>(
       environment['apiUrl'] + this.prefixApi + '/findByMatter/', {id: id}
+    )
+  }
+
+  public getByTaskMaster(id: string): Observable<any>{
+    console.log(id);
+    
+    return this.httpClient.post<any>(
+      environment['apiUrl'] + this.prefixApi + '/findByStaffPhanCong/', {id: id}
     )
   }
 }

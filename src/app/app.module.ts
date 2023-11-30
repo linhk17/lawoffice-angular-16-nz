@@ -18,6 +18,7 @@ import localeDe from '@angular/common/locales/de';
 import localeDeExtra from '@angular/common/locales/extra/de';
 registerLocaleData(en);
 registerLocaleData(localeDe, 'de-DE', localeDeExtra);
+
 @NgModule({
   declarations: [AppComponent],
   imports: [

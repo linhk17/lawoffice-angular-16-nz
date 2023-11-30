@@ -163,6 +163,25 @@ export const menuSideNavLaw = [
     ],
   },
   {
+    icon: 'build',
+    title: 'Manage Task',
+    children: [
+        {
+          icon: 'profile',
+          title: 'All task',
+          link: 'manage-task'
+        },
+        {
+          icon: 'setting',
+          title: 'Responsible for Task',
+        },
+        {
+          icon: 'dashboard',
+          title: 'Help & Contact',
+        },
+      ],
+  },
+  {
     icon: 'team',
     title: 'Manage Info',
     children: [

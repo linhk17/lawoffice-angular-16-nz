@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MessageComponent } from './message.component';
+import { StepsComponent } from './steps.component';
 
-describe('MessageComponent', () => {
-  let component: MessageComponent;
-  let fixture: ComponentFixture<MessageComponent>;
+describe('StepsComponent', () => {
+  let component: StepsComponent;
+  let fixture: ComponentFixture<StepsComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MessageComponent]
+      declarations: [StepsComponent]
     });
-    fixture = TestBed.createComponent(MessageComponent);
+    fixture = TestBed.createComponent(StepsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { QuoteService } from 'src/app/services/quote.service';
-import { Quote } from 'src/app/shared/models/quote.interface';
 
 @Component({
   selector: 'app-manage-quote',
@@ -11,8 +9,7 @@ import { Quote } from 'src/app/shared/models/quote.interface';
 export class ManageQuoteComponent {
   dataSource: any = []
   constructor(
-    private quoteService: QuoteService,
-    private router: Router
+    private quoteService: QuoteService
   ){}
 
   ngOnInit(){

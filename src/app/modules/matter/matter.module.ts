@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ManageMatterComponent } from './manage-matter/manage-matter.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatterDetailComponent } from './matter-detail/matter-detail.component';
-import { MatterDocumentsComponent } from './matter-documents/matter-documents.component';
 import { MatterContactsComponent } from './matter-contacts/matter-contacts.component';
 import { MatterTasksComponent } from './matter-tasks/matter-tasks.component';
 import { MatterStepsComponent } from './matter-steps/matter-steps.component';
@@ -17,7 +16,6 @@ import { MatterFormModule } from './matter-form/matter-form.module';
   declarations: [
     ManageMatterComponent,
     MatterDetailComponent,
-    MatterDocumentsComponent,
     MatterContactsComponent,
     MatterTasksComponent,
     MatterStepsComponent,

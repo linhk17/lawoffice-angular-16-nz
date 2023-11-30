@@ -4,14 +4,12 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
-  NonNullableFormBuilder,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { StorageService } from 'src/app/services/storage.service';
 import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/shared/models/user.interface';
 
 @Component({
   selector: 'app-edit-profile',
@@ -43,14 +41,10 @@ export class EditProfileComponent {
     this.userService.getProfileUser();
     this.userService.currentUser.subscribe((res) => {
       this.profileForm.patchValue({
-        ho_ten: [res?.ho_ten],
-        dia_chi: [res?.dia_chi],
-        email: [res?.email],
-        ngay_sinh: [res?.ngay_sinh],
-        part: [res?.bo_phan?.ten_bo_phan],
-        position: [res?.chuc_vu?.ten_chuc_vu],
+        ...res,
+        part: res?.bo_phan?.ten_bo_phan,
+        position: res?.chuc_vu?.ten_chuc_vu,
       });
-
       this.user = res;
     });
   }

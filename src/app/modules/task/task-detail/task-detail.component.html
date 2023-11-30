@@ -1,0 +1,63 @@
+<nz-card [nzTitle]="title">
+    <nz-row>
+        <nz-col nzSpan="14">
+            <nz-descriptions nzTitle="Vụ việc" [nzColumn]="2">
+                <nz-descriptions-item nzTitle="Tên vụ việc">{{matter?.ten_vu_viec}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Lĩnh vực">{{matter?.linh_vuc.ten_linh_vuc}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Dịch vụ">{{matter?.dich_vu.ten_dv}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Ngày lập">{{matter?.ngay_lap | dateFormatPipe}}</nz-descriptions-item>
+            </nz-descriptions>
+        </nz-col>
+        <nz-col nzSpan="10">
+            <nz-descriptions nzTitle="Luật sư" [nzColumn]="2">
+                <nz-descriptions-item nzTitle="Họ tên">{{matter?.luat_su.ho_ten}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Email">{{matter?.luat_su.email}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Số điện thoại">{{matter?.luat_su.account.sdt}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Chức vụ">{{matter?.chuc_vu?.ten_chuc_vu}}</nz-descriptions-item>
+            </nz-descriptions>
+        </nz-col>
+    </nz-row>
+    <nz-divider></nz-divider>
+    <nz-row>
+        <nz-col nzSpan="14">
+            <nz-descriptions nzTitle="Thông tin công việc" [nzColumn]="2">
+                <nz-descriptions-item nzTitle="Tên công việc">{{task?.ten_cong_viec}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Ngày giao">{{task?.ngay_giao | dateFormatPipe}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Yêu cầu công việc">{{task?.yeu_cau_cong_viec}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Hạn cuối">{{task?.han_chot_cong_viec |
+                    dateFormatPipe}}</nz-descriptions-item>
+            </nz-descriptions>
+        </nz-col>
+        <nz-col nzSpan="10">
+            <nz-descriptions nzTitle="Phụ trách công việc" [nzColumn]="2">
+                <nz-descriptions-item nzTitle="Họ tên">{{task?.nguoi_phu_trach.ho_ten}}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Email">{{task?.nguoi_phu_trach.email}}</nz-descriptions-item>
+                <nz-descriptions-item
+                    nzTitle="Số điện thoại">{{task?.nguoi_phu_trach.account.sdt}}</nz-descriptions-item>
+                <nz-descriptions-item
+                    nzTitle="Chức vụ">{{task?.nguoi_phu_trach.chuc_vu?.ten_chuc_vu}}</nz-descriptions-item>
+            </nz-descriptions>
+        </nz-col>
+    </nz-row>
+    <nz-tabset nzType="card" style="margin-top: 20px;">
+        <nz-tab nzTitle="Tài liệu">
+            <app-table-documents [edit]="true" [documents]="task?.tai_lieu ? task?.tai_lieu : []"
+                (uploadFile)="updateTask($event)"></app-table-documents>
+        </nz-tab>
+    </nz-tabset>
+</nz-card>
+
+<ng-template #title>
+    <nz-row>
+        <nz-col nzSpan="12">
+            <nz-badge nzStatus="processing">Đang thực hiện</nz-badge>
+        </nz-col>
+        <nz-col nzSpan="6" nzOffset="5" style="display: flex; justify-content: end; margin-right: 10px;">
+            <button nz-button [nzSize]="'default'" class="btn-warning box-shadow-light-grey" nzShape="round"
+                type="primary">
+                <span nz-icon nzType="edit"></span>
+                Trình duyệt
+            </button>
+        </nz-col>
+    </nz-row>
+</ng-template>

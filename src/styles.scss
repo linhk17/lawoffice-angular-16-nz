@@ -2,13 +2,15 @@
 @import "../node_modules/ng-zorro-antd/ng-zorro-antd.min.css";
 @import "../node_modules/ng-zorro-antd/style/index.min.css";
 @import "../node_modules/ng-zorro-antd/button/style/index.min.css";
+
 /* You can add global styles to this file, and also import other style files */
 html,
 body {
     // height: 100%;
-    
+
 }
-*{
+
+* {
     font-family: Inter, sans-serif !important;
 }
 
@@ -37,54 +39,76 @@ body {
     --body-background: #f0f1f3;
 }
 
-.bg-dark-blue{
-    background-color: var(--dark-blue) ;
-}
-.bg-light-blue{
-    background-color: var(--light-blue) ;
+.bg-dark-blue {
+    background-color: var(--dark-blue);
 }
 
-.btn-dark-blue{
-    background-color: var(--dark-blue) ;
+.bg-light-blue {
+    background-color: var(--light-blue);
+}
+
+.btn-dark-blue {
+    background-color: var(--dark-blue);
     border: 0;
     color: #fff;
     letter-spacing: 0.5px;
-    &:hover{
+
+    &:hover {
         color: #fff;
         background-color: var(--light-blue);
     }
 }
-.btn-light-blue{
-    background-color: var(--light-blue) ;
+
+.btn-light-blue {
+    background-color: var(--light-blue);
     border: 0;
     color: #fff;
     font-weight: bold;
     letter-spacing: 0.5px;
-    &:hover{
+
+    &:hover {
         background-color: var(--dark-blue);
     }
 }
-.btn-add{
-    background-color: var(--cyan) ;
-    color: #fff ;
+
+.btn-add {
+    background-color: var(--cyan);
+    color: #fff;
     font-weight: bold;
     letter-spacing: 0;
 }
 
-.btn-cancel{
-    background-color: var(--red) ;
+.btn-cancel {
+    background-color: var(--red);
     color: #fff !important;
     font-weight: bold;
     letter-spacing: 0;
 }
 
-.btn-success{
+.btn-warning {
+    background-color: #f0d823;
+    border: 0;
+    color: #000;
+    font-weight: bold;
+    &:hover {
+        background-color: #f0d823af;
+        color: #000;
+
+    }
+}
+.box-shadow-light-grey{
+    box-shadow: 2px 3px 4px var(--light-grey);
+}
+
+.btn-success {
     background-color: var(--cyan);
     border: 0;
-    &:hover{
+
+    &:hover {
         background-color: var(--cyan-hover);
     }
 }
+
 .mat-mdc-menu-panel {
     margin-top: 22px;
     max-width: 300px !important;

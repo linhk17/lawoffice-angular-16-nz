@@ -1,17 +1,14 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { NzUploadFile } from 'ng-zorro-antd/upload';
-import { Observable, Observer } from 'rxjs';
 
 @Component({
-  selector: 'app-matter-documents',
-  templateUrl: './matter-documents.component.html',
-  styleUrls: ['./matter-documents.component.scss'],
+  selector: 'app-table-documents',
+  templateUrl: './table-documents.component.html',
+  styleUrls: ['./table-documents.component.scss']
 })
-export class MatterDocumentsComponent {
+export class TableDocumentsComponent {
   @Input() documents: any[] = [];
   @Input() edit: boolean = false;
   @Output() uploadFile = new EventEmitter();
-  // docs: any = [];
   file: any;
   error: boolean = false;
   constructor() {}
@@ -20,7 +17,7 @@ export class MatterDocumentsComponent {
   }
   transformFile(e: any) {
     let selected = e.target.files[0];
-    if (selected.size > 5 * 1024 * 1024) {
+    if (selected.size > 50000) {
       this.error = true;
     } else {
       this.error = false;

@@ -1,1 +1,50 @@
-<p>manage-task works!</p>
+<nz-breadcrumb>
+    <nz-breadcrumb-item>Dashboard</nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+        <a>Manage Task</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>Task List</nz-breadcrumb-item>
+</nz-breadcrumb>
+<nz-space style="margin: 20px 0;">
+    <button [routerLink]="'/counselor/manage-quote/add/'" *nzSpaceItem nz-button nzType="primary" class="btn-success">
+        <span nz-icon nzType="download"></span>
+        Export Excel
+    </button>
+    <button [routerLink]="'/counselor/manage-quote/add/'" *nzSpaceItem nz-button nzType="primary" nzDanger>
+        <span nz-icon nzType="download"></span>
+        Export PDF
+    </button>
+</nz-space>
+<nz-alert style="margin-bottom: 20px;" nzType="info"
+    nzMessage="Filtering {{dataSource.length}} out of {{dataSource.length}} items. Filter the next 0 items"></nz-alert>
+<nz-table #basicTable [nzData]="dataSource">
+    <thead>
+        <tr class="title-table">
+            <th>Tên công việc</th>
+            <th>Phụ trách</th>
+            <th>Ngày tạo</th>
+            <th>Hạn nộp</th>
+            <th>Trạng thái</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of basicTable.data" [routerLink]='data._id'>
+            <td>{{ data.ten_cong_viec }}</td>
+            <td>{{ data.nguoi_phu_trach?.ho_ten }}</td>
+            <td>{{ data.ngay_giao | dateFormatPipe }}</td>
+            <td>{{ data.han_chot_cong_viec | dateFormatPipe }}</td>
+            <td>
+                <nz-tag [nzColor]="
+            data.status == 0 ? 'warning'
+            : data.status == 1 ? 'processing'
+            : 'success'">
+                    {{
+                    data.status == 0 ? 'Pending'
+                    : data.status == 1 ? 'Processing'
+                    : 'Success'
+                    }}
+                </nz-tag>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>

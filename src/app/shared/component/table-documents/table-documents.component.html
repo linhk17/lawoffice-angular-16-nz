@@ -1,13 +1,7 @@
-<!-- <button  class="btn-dark-blue" nz-button nzType="primary">Thêm mới</button> -->
-<!-- <nz-upload [nzTransformFile]="transformFile">
-    <button nz-button>
-      <span nz-icon nzType="upload"></span>
-      Upload
-    </button>
-  </nz-upload> -->
-  <nz-alert style="margin-bottom: 10px;" *ngIf="error" nzBanner nzType="error" nzMessage="
+<nz-alert style="margin-bottom: 10px;" *ngIf="error" nzBanner nzType="error" nzMessage="
   Kích thước file vượt quá mức quy định, vui lòng chọn file dưới 5MB"></nz-alert>
-  <input *ngIf="edit" accept="application/pdf, application/msword,text/plain" type="file" (change)="transformFile($event)"/>
+<input *ngIf="edit" accept="application/pdf, application/msword,text/plain" type="file"
+    (change)="transformFile($event)" />
 <nz-table [nzTotal]="50" #basicTable [nzData]="documents">
     <thead>
         <tr class="title-table">

@@ -15,17 +15,15 @@ const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     loadChildren: () =>
-      import('./modules/explore-user/explore-user.module').then(
-        (m) => m.ExploreUserModule
-      ),
+      import('./modules/explore-user/explore-user.module')
+      .then((m) => m.ExploreUserModule),
   },
   {
     path: 'login',
     component: MainLayoutComponent,
     loadChildren: () =>
-      import('./modules/authentication/authentication.module').then(
-        (m) => m.AuthenticationModule
-      ),
+      import('./modules/authentication/authentication.module')
+      .then((m) => m.AuthenticationModule),
   },
   {
     path: 'admin',
@@ -81,6 +79,12 @@ const routes: Routes = [
         loadChildren: () =>
           import('./modules/profile/profile.module')
           .then((m) => m.ProfileModule),
+      },
+      {
+        path: 'manage-task',
+        loadChildren: () =>
+          import('./modules/task/task.module')
+          .then((m) => m.TaskModule),
       }
     ],
   },

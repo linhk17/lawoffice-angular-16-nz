@@ -40,6 +40,7 @@ export class MatterDetailComponent {
     });
   }
   updateMatter(event: any){
+    // console.log({...this.matter, ...event});
     this.matterService.update(this.matter._id, {...this.matter, ...event})
     .subscribe(res => this.matter = res)    
   }
