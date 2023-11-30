@@ -7,6 +7,8 @@ import { dateFormatPipe } from './pipe/date.pipe';
 import { CurrencyFormatPipe } from './pipe/currency.pipe';
 import { TableDocumentsComponent } from './component/table-documents/table-documents.component';
 import { StepsComponent } from './component/steps/steps.component';
+import { PlaceAutocompleteDirective } from './directive/place-autocomplete.directive';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,10 +17,12 @@ import { StepsComponent } from './component/steps/steps.component';
     CurrencyFormatPipe,
     TableDocumentsComponent,
     StepsComponent,
+    PlaceAutocompleteDirective
   ],
   imports: [
     CommonModule,
     NgZorroModule,
+    ReactiveFormsModule,
     IconsProviderModule
   ],
   exports: [
@@ -29,7 +33,7 @@ import { StepsComponent } from './component/steps/steps.component';
     InputSearchComponent,
     TableDocumentsComponent,
     StepsComponent,
-    
+    PlaceAutocompleteDirective
   ],
   providers: [CurrencyFormatPipe]
 })

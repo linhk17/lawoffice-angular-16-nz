@@ -20,7 +20,7 @@
             <td>{{data.name}}</td>
             <td>{{data.type}}</td>
             <td>{{data.size}}</td>
-            <td>{{data.lastModifiedDate | date: 'dd/MM/yyyy, h:mm a'}}</td>
+            <td>{{data.lastModifiedDate | dateFormatPipe}}</td>
             <td>
                 <a (click)="handleFile(data.file, data.name)">Download File</a>
             </td>

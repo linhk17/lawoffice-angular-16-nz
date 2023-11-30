@@ -47,12 +47,13 @@
             <nz-form-item class="form-item-control">
                 <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="dia_chi">Địa chỉ</nz-form-label>
                 <nz-form-control [nzSm]="14" [nzXs]="24">
-                    <textarea 
+                    <input nz-input appPlaceAutocomplete (onSelect)="setAddress($event)"/>
+                    <!-- <textarea 
                     [class.active-control-error]="submitted && formControl['dia_chi'].errors"
                      nz-input formControlName="dia_chi" id="dia_chi"></textarea>
                     <div  class="text-error" [class.active-error]="submitted && formControl['dia_chi'].errors">
                         {{getErrorMessage(formControl['dia_chi'], 'dia_chi')}}
-                    </div>
+                    </div> -->
                 </nz-form-control>
             </nz-form-item>
         </form>

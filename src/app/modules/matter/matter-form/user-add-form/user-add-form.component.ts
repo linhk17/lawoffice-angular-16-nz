@@ -46,6 +46,10 @@ export class UserAddFormComponent {
     return control.hasError(`${typeError}`) ? `Giá trị nhập không hợp lệ` : '';
   }
 
+  setAddress(event: any){
+    console.log(event);
+  }
+
   submitForm(): void {
     this.submitted = true;
     if (this.userForm.valid) {
