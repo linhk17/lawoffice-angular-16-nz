@@ -1,19 +1,21 @@
 import { AbstractControl, ValidatorFn } from "@angular/forms";
-import { PhoneNumberUtil } from "google-libphonenumber";
+import {parsePhoneNumber, isValidPhoneNumber} from 'libphonenumber-js'
 
+export let numberFormat: string = '';
+export function PhoneNumberValidator(regionCode: any): ValidatorFn {
+  let phoneNumber: any;
+  return (control: AbstractControl) => {
+    let validNumber = false;
+    try {
+      phoneNumber = parsePhoneNumber(control.value, regionCode).formatNational();
+      numberFormat = phoneNumber;
+      validNumber = isValidPhoneNumber(control.value, regionCode)
+    } catch (e) { }
 
-export function PhoneNumberValidator(regionCode: string): ValidatorFn {
-    var phoneNumberUtil = PhoneNumberUtil.getInstance();
-    phoneNumberUtil = PhoneNumberUtil.getInstance();
-    return (control: AbstractControl) => {
-      let validNumber = false;
-      try {
-        const phoneNumber = phoneNumberUtil.parseAndKeepRawInput(
-          control.value, regionCode
-        );
-        validNumber = phoneNumberUtil.isValidNumberForRegion(phoneNumber, regionCode)
-      } catch (e) { }
-  
-      return validNumber ? null : { 'wrongNumber': { value: control.value } };
-    }
+    return validNumber ? null :  phoneNumber;
   }
+}
+
+
+
+

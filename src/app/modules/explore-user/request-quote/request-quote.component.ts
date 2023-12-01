@@ -10,7 +10,7 @@ import { TypeServiceService } from 'src/app/services/type-service.service';
 import { District, Province } from 'src/app/shared/models/province.interface';
 import { TypeService } from 'src/app/shared/models/type-service.interface';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { PhoneNumberValidator } from 'src/app/shared/utils/validator';
+import { PhoneNumberValidator, numberFormat } from 'src/app/shared/utils/validator';
 import { CountryPhoneCodeService } from 'src/app/services/country-phone-code.service';
 @Component({
   selector: 'app-request-quote',
@@ -49,7 +49,7 @@ export class RequestQuoteComponent {
     .subscribe(
       (res: any) => {
         this.countryCode = res.sort((a: any, b: any) => {
-          return parseInt(a.dial_code) - parseInt(b.dial_code);
+          return a.name - b.name;
         });
       }
 
@@ -77,7 +77,10 @@ export class RequestQuoteComponent {
   }
   changeCountryCode(event: any){
     this.phoneCode = event;
-    this.requestForm.controls['phone'].addValidators(PhoneNumberValidator(this.phoneCode))
+    this.requestForm.controls['phone'].setValidators(PhoneNumberValidator(this.phoneCode))
+  }
+  setNumber(event: any){
+    console.log(PhoneNumberValidator(this.phoneCode));
   }
   submitForm(): void {
     if (this.requestForm.valid) {
@@ -87,7 +90,7 @@ export class RequestQuoteComponent {
           .create({
             khach_hang: {
               ho_ten: this.requestForm.value.fullName,
-              sdt: this.requestForm.value.phone,
+              sdt: numberFormat,
               email: this.requestForm.value.email,
             },
             linh_vuc: this.requestForm.value.type,
