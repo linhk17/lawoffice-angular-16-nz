@@ -4,6 +4,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { MatterService } from 'src/app/services/matter.service';
 import { TaskService } from 'src/app/services/task.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-task-detail',
@@ -13,12 +14,15 @@ import { TaskService } from 'src/app/services/task.service';
 export class TaskDetailComponent {
   task: any;
   matter: any;
+  user: any;
   constructor(
     private route: ActivatedRoute,
     private taskService: TaskService,
     private matterService: MatterService,
     private modalService: NzModalService,
-    private message: NzMessageService
+    private message: NzMessageService,
+    private userService: UserService,
+
   ) {}
   ngOnInit() {
     this.route.params.subscribe((param) => {
@@ -29,6 +33,11 @@ export class TaskDetailComponent {
           .subscribe((matter) => (this.matter = matter));
       });
     });
+
+    this.userService.getProfileUser();
+    this.userService.currentUser.subscribe((res) => {
+      this.user = res;
+    });
   }
   showConfirm(): void {
     this.modalService.confirm({
@@ -38,6 +47,7 @@ export class TaskDetailComponent {
       nzCancelText: 'Cancel',
     });
   }
+  
   updateTask(event: any) {
     this.taskService.update(this.task._id, { ...event }).subscribe((res) => {
       this.task = res;

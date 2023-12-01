@@ -33,7 +33,7 @@
                 </nz-tag>
             </td>
             <td>
-                <app-modal-confirm [btnTitle]="'Delete'" [contentConfirm]="'Hãy xác nhận rằng bạn chắc chắn muốn xoá'"
+                <app-modal-confirm [icon]="'edit'" [btnTitle]="'Delete'" [contentConfirm]="'Hãy xác nhận rằng bạn chắc chắn muốn xoá'"
                     [typeConfirm]="'error'" [titleConfim]="'Bạn chắc chắn muốn xoá'"
                     (isConfirm)="deleteTask(data._id)"></app-modal-confirm>
             </td>

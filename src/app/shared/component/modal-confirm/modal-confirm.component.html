@@ -1,3 +1,4 @@
-<button nz-button nzType="primary" [nzDanger]=" typeConfirm == 'error'" (click)="showConfirm()">
+<button nz-button nzType="primary" [class]="typeButton" [nzDanger]=" typeConfirm == 'error'" (click)="showConfirm()">
+    <span nz-icon [nzType]="icon"></span>
     {{btnTitle}}
 </button>

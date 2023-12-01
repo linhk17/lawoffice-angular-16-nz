@@ -79,14 +79,11 @@
                                     {{user.account.quyen != 0 ? 'Nhân viên' : 'Khách hàng'}}
                                 </nz-tag>
                             </nz-list-item>
-                            <!-- <nz-list-empty *ngIf="data.length === 0"></nz-list-empty> -->
                         </nz-list>
                     </nz-col>
                 </nz-row>
             </nz-tab>
             <nz-tab nzTitle="Tài liệu">
-                <!-- <app-matter-documents [edit]="edit" [documents]="matter?.tai_lieu ? matter.tai_lieu : []"
-                    (uploadFile)="updateMatter($event)"></app-matter-documents> -->
                     <app-table-documents [edit]="edit" [documents]="matter?.tai_lieu ? matter.tai_lieu : []"
                     (uploadFile)="updateMatter($event)"></app-table-documents>
             </nz-tab>

@@ -11,6 +11,8 @@ export class ModalConfirmComponent {
   @Input() btnTitle: string = '';
   @Input() titleConfim: string = '';
   @Input() contentConfirm: string = '';
+  @Input() icon: string = '';
+  @Input() typeButton: string = '';
   @Output() isConfirm = new EventEmitter();
   confirmModal?: NzModalRef;
 
@@ -25,7 +27,7 @@ export class ModalConfirmComponent {
         new Promise((resolve, reject) => {
           setTimeout(() => {
             resolve(this.isConfirm.emit(true))
-          }, 1000);
+          }, 500);
         }).catch(() => console.log('Oops errors!'))
     });
   }

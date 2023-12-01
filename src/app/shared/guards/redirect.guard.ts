@@ -18,8 +18,10 @@ export class RedirectGuard{
                 return this.router.createUrlTree(["admin"]);
             case 2:
                 return this.router.createUrlTree(["law"]);
-            default:
+            case 3:
                 return this.router.createUrlTree(["counselor"]);
+            default:
+                return this.router.createUrlTree(["assistant"]);
         }
     }
 }

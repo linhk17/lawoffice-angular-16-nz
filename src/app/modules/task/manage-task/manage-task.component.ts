@@ -19,7 +19,7 @@ export class ManageTaskComponent {
     this.user = this.storage.getUser();
     console.log(this.user);
 
-    this.taskService.getByTaskMaster(this.user.id)
+    this.taskService.getByStaffAndTaskMatter(this.user.id)
     .subscribe((res) => {
       this.dataSource = res;
     });

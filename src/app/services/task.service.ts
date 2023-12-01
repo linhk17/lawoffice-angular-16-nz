@@ -45,10 +45,14 @@ export class TaskService {
   }
 
   public getByTaskMaster(id: string): Observable<any>{
-    console.log(id);
-    
     return this.httpClient.post<any>(
       environment['apiUrl'] + this.prefixApi + '/findByStaffPhanCong/', {id: id}
+    )
+  }
+
+  public getByStaffAndTaskMatter(id: string): Observable<any>{
+    return this.httpClient.post<any>(
+      environment['apiUrl'] + this.prefixApi + '/findByStaffAndPhanCong/', {id: id}
     )
   }
 }

@@ -53,7 +53,6 @@ const routes: Routes = [
       },
     ],
   },
-
   {
     path: 'law',
     canActivate: [AuthGuard],
@@ -115,7 +114,29 @@ const routes: Routes = [
           .then((m) => m.ProfileModule),
       }
     ],
-  }
+  },
+  {
+    path: 'assistant',
+    canActivate: [AuthGuard],
+    component: ManageLayoutComponent,
+    data: {
+      expectedRole: 4,
+    },
+    children: [
+      {
+        path: 'manage-task',
+        loadChildren: () =>
+          import('./modules/task/task.module')
+          .then((m) => m.TaskModule),
+      },
+      {
+        path: 'manage-calendar',
+        loadChildren: () =>
+          import('./modules/calendar/calendar.module')
+          .then((m) => m.CalendarModule),
+      },
+    ],
+  },
 ];
 
 @NgModule({

@@ -11,6 +11,7 @@ import { PlaceAutocompleteDirective } from './directive/place-autocomplete.direc
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalConfirmComponent } from './component/modal-confirm/modal-confirm.component';
 import { UploadImageComponent } from './component/upload-image/upload-image.component';
+import { ProgressStatusComponent } from './component/progress-status/progress-status.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { UploadImageComponent } from './component/upload-image/upload-image.comp
     StepsComponent,
     PlaceAutocompleteDirective,
     ModalConfirmComponent,
-    UploadImageComponent
+    UploadImageComponent,
+    ProgressStatusComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,8 @@ import { UploadImageComponent } from './component/upload-image/upload-image.comp
     StepsComponent,
     PlaceAutocompleteDirective,
     ModalConfirmComponent,
-    UploadImageComponent
+    UploadImageComponent,
+    ProgressStatusComponent
   ],
   providers: [CurrencyFormatPipe]
 })
