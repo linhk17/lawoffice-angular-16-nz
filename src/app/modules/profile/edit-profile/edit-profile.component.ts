@@ -17,9 +17,10 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./edit-profile.component.scss'],
 })
 export class EditProfileComponent {
-  public user: any = {};
+  public user: any;
   submitted: boolean = false;
   profileForm: FormGroup;
+  avatar: any;
   constructor(
     private userService: UserService,
     private storage: StorageService,
@@ -52,14 +53,6 @@ export class EditProfileComponent {
     return this.profileForm.controls;
   }
 
-  getBase64(file: File) {
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
-  }
   getErrorMessage(control: any, typeError?: String) {
     if (control.hasError('required')) {
       return 'Vui lòng nhập vào trường này';
@@ -68,13 +61,19 @@ export class EditProfileComponent {
   }
   submitForm(): void {
     this.submitted = true;
+    // console.log(this.avatar);
+        
     if (this.profileForm.valid) {
-      this.userService.updateUser({
+      const data = {
         ...this.user,
-        ...this.profileForm.value,
-      });
+          ...this.profileForm.value,
+          avatar: this.avatar,
+      }
+      console.log(data);
+      
+      this.userService.updateUser(data);
       this.message.success('Chỉnh sửa thành công');
-      this.router.navigate(['/law/manage-profile']);
+      // this.router.navigate(['/law/manage-profile']);
     }
   }
 }

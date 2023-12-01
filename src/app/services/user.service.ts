@@ -47,7 +47,9 @@ export class UserService {
   }
 
   updateUser(user: any) {
-    this.httpClient.patch<User>(
+    console.log(user);
+    
+    this.httpClient.put<User>(
       environment['apiUrl'] + this.prefixApi + '/' + user._id, user
     ).subscribe(res => {
       this.user.next(res);

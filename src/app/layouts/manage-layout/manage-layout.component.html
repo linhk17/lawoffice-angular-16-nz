@@ -37,7 +37,7 @@
           </div>
           <div nz-col nzSpan="4" nzOffset="12" style="display: flex; align-items: center;">
             <nz-space nz-dropdown [nzDropdownMenu]="menu" nzDirection="horizontal" nzAlign="center" nzSize="large">
-              <nz-avatar nzSrc="assets/images/avatar/user.png"></nz-avatar>
+              <nz-avatar [nzSrc]="user?.avatar"></nz-avatar>
               <h5 style="margin-bottom: 0; margin-left: 10px;" nz-typography>{{user?.ho_ten}}</h5>
             </nz-space>
 

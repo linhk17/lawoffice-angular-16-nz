@@ -10,6 +10,7 @@ import { StepsComponent } from './component/steps/steps.component';
 import { PlaceAutocompleteDirective } from './directive/place-autocomplete.directive';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalConfirmComponent } from './component/modal-confirm/modal-confirm.component';
+import { UploadImageComponent } from './component/upload-image/upload-image.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ModalConfirmComponent } from './component/modal-confirm/modal-confirm.c
     TableDocumentsComponent,
     StepsComponent,
     PlaceAutocompleteDirective,
-    ModalConfirmComponent
+    ModalConfirmComponent,
+    UploadImageComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +38,8 @@ import { ModalConfirmComponent } from './component/modal-confirm/modal-confirm.c
     TableDocumentsComponent,
     StepsComponent,
     PlaceAutocompleteDirective,
-    ModalConfirmComponent
+    ModalConfirmComponent,
+    UploadImageComponent
   ],
   providers: [CurrencyFormatPipe]
 })

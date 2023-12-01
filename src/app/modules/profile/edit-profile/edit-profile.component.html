@@ -23,6 +23,10 @@
                         </div>
                     </nz-form-control>
                 </nz-form-item>
+                <nz-form-item *ngIf="user">
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="part">Ảnh đại diện</nz-form-label>
+                    <app-upload-image  [avatar]="user.avatar" (imageUploaded)="avatar = $event"></app-upload-image>
+                </nz-form-item>
             </nz-col>
             <nz-col nzSpan="12">
                 <nz-form-item>
@@ -43,6 +47,7 @@
                         <input nz-input formControlName="part" id="part" />
                     </nz-form-control>
                 </nz-form-item>
+              
             </nz-col>
         </nz-row>
 

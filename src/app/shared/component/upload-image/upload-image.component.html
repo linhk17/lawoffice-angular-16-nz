@@ -1,0 +1,7 @@
+<nz-upload nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" nzListType="picture-card"
+    [(nzFileList)]="fileList" (nzFileListChange)="setAvatar($event)" [nzShowButton]="fileList.length < 1" [nzPreview]="handlePreview">
+    <div>
+        <span nz-icon nzType="plus"></span>
+        <div style="margin-top: 8px">Upload</div>
+    </div>
+</nz-upload>
