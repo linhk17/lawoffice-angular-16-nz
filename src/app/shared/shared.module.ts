@@ -8,7 +8,7 @@ import { CurrencyFormatPipe } from './pipe/currency.pipe';
 import { TableDocumentsComponent } from './component/table-documents/table-documents.component';
 import { StepsComponent } from './component/steps/steps.component';
 import { PlaceAutocompleteDirective } from './directive/place-autocomplete.directive';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalConfirmComponent } from './component/modal-confirm/modal-confirm.component';
 import { UploadImageComponent } from './component/upload-image/upload-image.component';
 import { ProgressStatusComponent } from './component/progress-status/progress-status.component';
@@ -28,6 +28,7 @@ import { ProgressStatusComponent } from './component/progress-status/progress-st
   imports: [
     CommonModule,
     NgZorroModule,
+    FormsModule,
     ReactiveFormsModule,
     IconsProviderModule
   ],

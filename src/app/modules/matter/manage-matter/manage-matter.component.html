@@ -6,8 +6,9 @@
     <nz-breadcrumb-item>Quote List</nz-breadcrumb-item>
 </nz-breadcrumb>
 <nz-space style="margin: 20px 0;">
-    <ng-container  *ngIf="user.role == 1">
-        <button [routerLink]="'/admin/manage-matter/add/'" *nzSpaceItem nz-button nzType="primary" class="btn-dark-blue">
+    <ng-container *ngIf="user.role == 1">
+        <button [routerLink]="'/admin/manage-matter/add/'" *nzSpaceItem nz-button nzType="primary"
+            class="btn-dark-blue">
             <span nz-icon nzType="edit"></span>
             Vụ việc mới
         </button>
@@ -23,23 +24,48 @@
 </nz-space>
 <nz-alert style="margin-bottom: 20px;" nzType="info"
     nzMessage="Filtering 8 out of 8 items. Filter the next 0 items"></nz-alert>
-
-
-<nz-table [nzTotal]="50" #basicTable [nzData]="dataSource">
+<nz-table #filterTable [nzTotal]="50" [nzData]="dataDisplay">
     <thead>
         <tr class="title-table">
-            <th>Tên vụ việc</th>
-            <th>Lĩnh vực</th>
-            <th>Dịch vụ</th>
-            <th>Luật sư phụ trách</th>
-            <th>Khách hàng</th>
-            <th>Số điện thoại</th>
+            <th nzCustomFilter>
+                Tên vụ việc
+                <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+                    <span nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+
+            </th>
+            <th [nzFilters]="arrTypeService" [nzFilterFn]="typeFilterFn">
+                Lĩnh vực
+            </th>
+            <th [nzFilters]="arrServices" [nzFilterFn]="serviceFilterFn">Dịch vụ</th>
+            <th nzCustomFilter>
+                Luật sư phụ trách
+                <nz-filter-trigger [(nzVisible)]="visibleLaw" 
+                [nzActive]="searchValue.length > 0" 
+                [nzDropdownMenu]="menu">
+                    <span nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+            </th>
+            <th nzCustomFilter>Khách hàng
+                <nz-filter-trigger [(nzVisible)]="visibleCustomer" 
+                [nzActive]="searchValue.length > 0" 
+                [nzDropdownMenu]="menu">
+                    <span nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+            </th>
+            <th>Số điện thoại
+                <nz-filter-trigger [(nzVisible)]="visiblePhone" 
+                [nzActive]="searchValue.length > 0" 
+                [nzDropdownMenu]="menu">
+                    <span nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+            </th>
             <th>Trạng thái</th>
             <th>Tiến độ</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let data of basicTable.data" [routerLink]='data._id'>
+        <tr *ngFor="let data of filterTable.data" [routerLink]='data._id'>
             <td style="max-width: 200px;">
                 <p class="text-overflow" nz-tooltip [nzTooltipTitle]="data.ten_vu_viec" nzTooltipPlacement="bottomLeft"
                     [nzTooltipArrowPointAtCenter]="true">
@@ -77,17 +103,6 @@
                     }}
                 </nz-tag>
             </td>
-            <!-- <td style="max-width: 80px;">
-                <nz-tag [nzColor]="
-                    data.status_tt == 2 ? 'success' : data.status_tt == 1 ? 'processing'
-                    : 'warning'">
-                    {{
-                    data.status_tt == 2 ? 'Success' : data.status_tt == 1 ? 'Processing'
-                    : 'Pending'
-                    }}
-                </nz-tag>
-            </td> -->
-
             <td>
                 <nz-progress *ngIf="data.status == 0 || data.status == 2; else success" [nzPercent]="data.process"
                     nzSize="small"></nz-progress>
@@ -99,3 +114,12 @@
         </tr>
     </tbody>
 </nz-table>
+<nz-dropdown-menu #menu="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+            <button nz-button nzSize="small" (click)="search()" nzType="primary" class="search-button">Search</button>
+            <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+    </div>
+</nz-dropdown-menu>

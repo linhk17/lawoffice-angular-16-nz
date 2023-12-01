@@ -7,7 +7,7 @@ import { MatterContactsComponent } from './matter-contacts/matter-contacts.compo
 import { MatterTasksComponent } from './matter-tasks/matter-tasks.component';
 import { MatterStepsComponent } from './matter-steps/matter-steps.component';
 import { MatterFeesComponent } from './matter-fees/matter-fees.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatterRoutingModule } from './matter-routing.module';
 import { MatterFormModule } from './matter-form/matter-form.module';
 
@@ -24,6 +24,7 @@ import { MatterFormModule } from './matter-form/matter-form.module';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     MatterRoutingModule,
     SharedModule,
